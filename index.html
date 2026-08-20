@@ -1,1 +1,2994 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
 
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>THBR Font Studio</title>
+
+  <!-- Google Font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =========================================================
+       1. RESET
+    ========================================================= */
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Prompt", sans-serif;
+      background: #fff8fb;
+      color: #3b3040;
+      min-height: 100vh;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font-family: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+
+    /* =========================================================
+       2. HEADER
+    ========================================================= */
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      height: 72px;
+
+      background: rgba(255, 255, 255, 0.94);
+      backdrop-filter: blur(15px);
+
+      border-bottom: 1px solid #f0dfe8;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 28px;
+    }
+
+
+    /* Hamburger */
+
+    .menu-btn {
+      width: 44px;
+      height: 44px;
+
+      border: none;
+      border-radius: 14px;
+
+      background: #fff0f6;
+
+      color: #d85b91;
+
+      font-size: 23px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      transition: 0.2s;
+    }
+
+    .menu-btn:hover {
+      background: #fbd7e7;
+      transform: translateY(-2px);
+    }
+
+
+    /* Logo */
+
+    .logo {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+
+      text-align: center;
+      line-height: 1.1;
+    }
+
+    .logo-main {
+      font-family: "Kanit", sans-serif;
+
+      font-size: 25px;
+      font-weight: 600;
+
+      color: #d9578e;
+    }
+
+    .logo-sub {
+      font-size: 10px;
+      letter-spacing: 2px;
+
+      color: #a88a9b;
+    }
+
+
+    /* Profile */
+
+    .profile-btn {
+      border: 1px solid #f0d5e2;
+
+      background: white;
+
+      border-radius: 20px;
+
+      padding: 9px 15px;
+
+      color: #76566a;
+
+      transition: 0.2s;
+    }
+
+    .profile-btn:hover {
+      background: #fff0f6;
+    }
+
+
+    /* =========================================================
+       3. SIDEBAR
+    ========================================================= */
+
+    .sidebar {
+      position: fixed;
+
+      top: 0;
+      left: -310px;
+
+      width: 290px;
+      height: 100vh;
+
+      z-index: 2000;
+
+      background: white;
+
+      box-shadow: 10px 0 40px rgba(70, 35, 55, 0.12);
+
+      transition: left 0.3s ease;
+
+      padding: 24px;
+    }
+
+    .sidebar.active {
+      left: 0;
+    }
+
+    .sidebar-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-bottom: 30px;
+    }
+
+    .sidebar-title {
+      font-size: 21px;
+      font-weight: 600;
+      color: #d9578e;
+    }
+
+    .close-sidebar {
+      width: 38px;
+      height: 38px;
+
+      border: none;
+      border-radius: 12px;
+
+      background: #fff0f6;
+
+      color: #c85b87;
+
+      font-size: 20px;
+    }
+
+    .side-menu {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-menu button {
+      width: 100%;
+
+      text-align: left;
+
+      padding: 14px 16px;
+
+      border: none;
+      border-radius: 14px;
+
+      background: transparent;
+
+      color: #655263;
+
+      font-size: 15px;
+    }
+
+    .side-menu button:hover {
+      background: #fff0f6;
+      color: #d9578e;
+    }
+
+    .sidebar-footer {
+      position: absolute;
+
+      bottom: 25px;
+      left: 24px;
+      right: 24px;
+
+      background: #fff5f9;
+
+      padding: 16px;
+
+      border-radius: 16px;
+
+      font-size: 13px;
+      color: #96798a;
+    }
+
+
+    /* Sidebar overlay */
+
+    .overlay {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 1500;
+
+      background: rgba(45, 20, 35, 0.25);
+
+      opacity: 0;
+      visibility: hidden;
+
+      transition: 0.3s;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+
+    /* =========================================================
+       4. MAIN
+    ========================================================= */
+
+    main {
+      width: 100%;
+    }
+
+
+    /* =========================================================
+       5. HERO
+    ========================================================= */
+
+    .hero {
+      max-width: 1200px;
+
+      margin: 0 auto;
+
+      padding: 70px 24px 45px;
+
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+
+      padding: 7px 15px;
+
+      border-radius: 30px;
+
+      background: #ffe8f1;
+
+      color: #d25688;
+
+      font-size: 13px;
+
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-family: "Kanit", sans-serif;
+
+      font-size: clamp(38px, 6vw, 68px);
+
+      line-height: 1.05;
+
+      color: #4b3544;
+
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #d9578e;
+    }
+
+    .hero p {
+      max-width: 650px;
+
+      margin: auto;
+
+      color: #947d8b;
+
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+
+    /* =========================================================
+       6. SEARCH
+    ========================================================= */
+
+    .tools {
+      max-width: 1200px;
+
+      margin: 0 auto 35px;
+
+      padding: 0 24px;
+    }
+
+    .search-box {
+      position: relative;
+
+      width: 100%;
+    }
+
+    .search-box input {
+      width: 100%;
+
+      height: 56px;
+
+      border: 1px solid #efdce5;
+
+      border-radius: 18px;
+
+      background: white;
+
+      padding: 0 20px 0 52px;
+
+      font-size: 15px;
+
+      outline: none;
+
+      color: #443542;
+
+      transition: 0.2s;
+    }
+
+    .search-box input:focus {
+      border-color: #e889ad;
+
+      box-shadow: 0 0 0 4px rgba(232, 137, 173, 0.12);
+    }
+
+    .search-icon {
+      position: absolute;
+
+      left: 18px;
+      top: 50%;
+
+      transform: translateY(-50%);
+
+      font-size: 20px;
+
+      color: #bd9bab;
+    }
+
+
+    /* Filters */
+
+    .filter-row {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 15px;
+
+      margin-top: 16px;
+
+      flex-wrap: wrap;
+    }
+
+    .filters {
+      display: flex;
+
+      gap: 8px;
+
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid #efdce5;
+
+      background: white;
+
+      color: #846a78;
+
+      border-radius: 30px;
+
+      padding: 9px 16px;
+
+      font-size: 13px;
+
+      transition: 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: #d9578e;
+
+      color: white;
+
+      border-color: #d9578e;
+    }
+
+    .font-count {
+      font-size: 13px;
+      color: #a38c99;
+    }
+
+
+    /* =========================================================
+       7. FONT GRID
+    ========================================================= */
+
+    .font-section {
+      max-width: 1200px;
+
+      margin: auto;
+
+      padding: 0 24px 80px;
+    }
+
+    .font-grid {
+      display: grid;
+
+      grid-template-columns: repeat(3, 1fr);
+
+      gap: 22px;
+    }
+
+
+    /* =========================================================
+       8. FONT CARD
+    ========================================================= */
+
+    .font-card {
+      background: white;
+
+      border: 1px solid #f0dfe8;
+
+      border-radius: 24px;
+
+      padding: 20px;
+
+      box-shadow: 0 8px 25px rgba(100, 55, 80, 0.05);
+
+      transition: 0.25s;
+
+      overflow: hidden;
+    }
+
+    .font-card:hover {
+      transform: translateY(-4px);
+
+      box-shadow: 0 15px 35px rgba(100, 55, 80, 0.10);
+    }
+
+    .font-card-top {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: flex-start;
+
+      margin-bottom: 15px;
+    }
+
+    .font-name {
+      font-size: 20px;
+      font-weight: 600;
+
+      color: #493541;
+    }
+
+    .font-category {
+      font-size: 11px;
+
+      padding: 5px 9px;
+
+      background: #fff0f6;
+
+      color: #c45b86;
+
+      border-radius: 20px;
+    }
+
+
+    /* Preview */
+
+    .font-preview {
+      min-height: 150px;
+
+      border-radius: 17px;
+
+      background: #fff8fb;
+
+      border: 1px solid #f4e5eb;
+
+      padding: 20px;
+
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 15px;
+    }
+
+    .preview-text {
+      width: 100%;
+
+      outline: none;
+
+      word-break: break-word;
+
+      font-size: 38px;
+
+      line-height: 1.3;
+
+      color: #44333e;
+    }
+
+
+    /* Tester controls */
+
+    .tester {
+      display: grid;
+
+      grid-template-columns: 1fr auto;
+
+      gap: 10px;
+
+      margin-bottom: 12px;
+    }
+
+    .tester-input {
+      width: 100%;
+
+      min-width: 0;
+
+      height: 42px;
+
+      border: 1px solid #eadbe3;
+
+      border-radius: 12px;
+
+      padding: 0 12px;
+
+      outline: none;
+
+      color: #493541;
+    }
+
+    .tester-input:focus {
+      border-color: #e889ad;
+    }
+
+    .size-control {
+      display: flex;
+
+      align-items: center;
+
+      gap: 5px;
+    }
+
+    .size-control button {
+      width: 38px;
+      height: 38px;
+
+      border: none;
+
+      background: #fff0f6;
+
+      color: #c75783;
+
+      border-radius: 10px;
+    }
+
+
+    /* Weight */
+
+    .weight-row {
+      display: flex;
+
+      gap: 6px;
+
+      margin-bottom: 15px;
+    }
+
+    .weight-btn {
+      flex: 1;
+
+      border: 1px solid #eadbe3;
+
+      background: white;
+
+      color: #856e7b;
+
+      border-radius: 10px;
+
+      padding: 7px;
+
+      font-size: 11px;
+    }
+
+    .weight-btn.active {
+      background: #4b3544;
+
+      border-color: #4b3544;
+
+      color: white;
+    }
+
+
+    /* Price */
+
+    .font-bottom {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      gap: 10px;
+    }
+
+    .price {
+      font-weight: 600;
+
+      color: #d9578e;
+    }
+
+    .price small {
+      display: block;
+
+      font-weight: 400;
+
+      color: #a58d9a;
+
+      font-size: 10px;
+    }
+
+    .card-actions {
+      display: flex;
+
+      gap: 7px;
+    }
+
+    .action-btn {
+      border: none;
+
+      border-radius: 11px;
+
+      padding: 9px 12px;
+
+      font-size: 12px;
+    }
+
+    .vs-btn {
+      background: #f5edf2;
+
+      color: #725c69;
+    }
+
+    .buy-btn {
+      background: #d9578e;
+
+      color: white;
+    }
+
+    .buy-btn:hover {
+      background: #c7477d;
+    }
+
+
+    /* =========================================================
+       9. LOADING / EMPTY
+    ========================================================= */
+
+    .loading {
+      grid-column: 1 / -1;
+
+      text-align: center;
+
+      padding: 60px;
+
+      color: #a58b99;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+
+      text-align: center;
+
+      padding: 60px;
+
+      color: #a58b99;
+    }
+
+
+    /* =========================================================
+       10. VS MODE
+    ========================================================= */
+
+    .vs-modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 3000;
+
+      background: rgba(40, 20, 32, 0.55);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .vs-modal.active {
+      display: flex;
+    }
+
+    .vs-window {
+      width: min(1000px, 100%);
+
+      max-height: 90vh;
+
+      overflow-y: auto;
+
+      background: white;
+
+      border-radius: 25px;
+
+      padding: 25px;
+    }
+
+    .modal-header {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      margin-bottom: 20px;
+    }
+
+    .modal-header h2 {
+      color: #4b3544;
+    }
+
+    .modal-close {
+      width: 40px;
+      height: 40px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      background: #fff0f6;
+
+      color: #c75783;
+
+      font-size: 20px;
+    }
+
+    .vs-selectors {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .vs-selectors select {
+      width: 100%;
+
+      height: 45px;
+
+      border: 1px solid #eadbe3;
+
+      border-radius: 12px;
+
+      padding: 0 12px;
+
+      outline: none;
+
+      background: white;
+    }
+
+    .vs-input {
+      width: 100%;
+
+      height: 50px;
+
+      border: 1px solid #eadbe3;
+
+      border-radius: 13px;
+
+      padding: 0 15px;
+
+      margin-bottom: 20px;
+
+      outline: none;
+    }
+
+    .vs-stage {
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: 15px;
+    }
+
+    .vs-panel {
+      min-height: 280px;
+
+      background: #fff8fb;
+
+      border: 1px solid #f0dfe8;
+
+      border-radius: 18px;
+
+      padding: 20px;
+    }
+
+    .vs-panel h3 {
+      font-size: 14px;
+
+      color: #a1788c;
+
+      margin-bottom: 20px;
+    }
+
+    .vs-text {
+      font-size: 42px;
+
+      line-height: 1.4;
+
+      word-break: break-word;
+
+      color: #44333e;
+    }
+
+
+    /* =========================================================
+       11. BUY MODAL
+    ========================================================= */
+
+    .buy-modal {
+      position: fixed;
+
+      inset: 0;
+
+      z-index: 3000;
+
+      background: rgba(40, 20, 32, 0.55);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      padding: 20px;
+    }
+
+    .buy-modal.active {
+      display: flex;
+    }
+
+    .buy-window {
+      width: min(500px, 100%);
+
+      background: white;
+
+      border-radius: 25px;
+
+      padding: 25px;
+    }
+
+    .license-list {
+      display: grid;
+
+      gap: 10px;
+
+      margin: 20px 0;
+    }
+
+    .license-option {
+      border: 1px solid #eadbe3;
+
+      border-radius: 15px;
+
+      padding: 15px;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .license-option:hover,
+    .license-option.selected {
+      border-color: #d9578e;
+
+      background: #fff3f8;
+    }
+
+    .license-option strong {
+      display: block;
+
+      color: #493541;
+
+      margin-bottom: 4px;
+    }
+
+    .license-option span {
+      font-size: 12px;
+
+      color: #9b8490;
+    }
+
+    .license-price {
+      float: right;
+
+      color: #d9578e;
+
+      font-weight: 600;
+    }
+
+    .line-order-btn {
+      width: 100%;
+
+      height: 48px;
+
+      border: none;
+
+      border-radius: 14px;
+
+      background: #06c755;
+
+      color: white;
+
+      font-size: 15px;
+
+      font-weight: 500;
+    }
+
+
+    /* =========================================================
+       12. FOOTER
+    ========================================================= */
+
+    footer {
+      background: #493541;
+
+      color: #eadde4;
+
+      padding: 35px 24px;
+
+      text-align: center;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    footer p {
+      font-size: 12px;
+
+      margin-top: 7px;
+
+      color: #bdaeb7;
+    }
+
+
+    /* =========================================================
+       13. RESPONSIVE
+    ========================================================= */
+
+
+    /* TABLET */
+
+    @media (max-width: 900px) {
+
+      .font-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .header {
+        height: 64px;
+
+        padding: 0 15px;
+      }
+
+      .menu-btn {
+        width: 40px;
+        height: 40px;
+      }
+
+      .profile-btn {
+        padding: 8px 11px;
+
+        font-size: 12px;
+      }
+
+      .logo-main {
+        font-size: 20px;
+      }
+
+      .logo-sub {
+        font-size: 8px;
+      }
+
+      .hero {
+        padding: 45px 18px 35px;
+      }
+
+      .hero h1 {
+        font-size: 40px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .tools {
+        padding: 0 15px;
+      }
+
+      .filter-row {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .font-section {
+        padding: 0 15px 60px;
+      }
+
+      .font-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .font-card {
+        border-radius: 20px;
+      }
+
+      .preview-text {
+        font-size: 32px;
+      }
+
+      .vs-selectors,
+      .vs-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .vs-window,
+      .buy-window {
+        padding: 18px;
+
+        border-radius: 20px;
+      }
+
+      .vs-text {
+        font-size: 30px;
+      }
+
+    }
+
+
+    /* SMALL MOBILE */
+
+    @media (max-width: 380px) {
+
+      .logo {
+        display: none;
+      }
+
+      .tester {
+        grid-template-columns: 1fr;
+      }
+
+      .font-bottom {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
+
+      .card-actions {
+        width: 100%;
+      }
+
+      .action-btn {
+        flex: 1;
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- =======================================================
+       SIDEBAR
+  ======================================================== -->
+
+  <aside
+    class="sidebar"
+    id="sidebar"
+  >
+
+    <div class="sidebar-header">
+
+      <div class="sidebar-title">
+        ♡ THBR Font
+      </div>
+
+      <button
+        class="close-sidebar"
+        id="closeSidebar"
+      >
+        ×
+      </button>
+
+    </div>
+
+
+    <nav class="side-menu">
+
+      <button onclick="goHome()">
+        🏠 หน้าหลัก
+      </button>
+
+      <button onclick="scrollToFonts()">
+        🔤 ฟอนต์ทั้งหมด
+      </button>
+
+      <button onclick="openVSMode()">
+        ⚡ VS Mode
+      </button>
+
+      <button onclick="goProfile()">
+        👤 โปรไฟล์
+      </button>
+
+      <button onclick="goLogin()">
+        🔐 เข้าสู่ระบบ
+      </button>
+
+      <button onclick="openLINE()">
+        💬 ติดต่อ LINE OA
+      </button>
+
+    </nav>
+
+
+    <div class="sidebar-footer">
+
+      <strong>THBR Font Studio</strong>
+
+      <br>
+
+      ฟอนต์ที่ออกแบบด้วยความตั้งใจ ♡
+
+    </div>
+
+  </aside>
+
+
+  <div
+    class="overlay"
+    id="overlay"
+  ></div>
+
+
+  <!-- =======================================================
+       HEADER
+  ======================================================== -->
+
+  <header class="header">
+
+    <button
+      class="menu-btn"
+      id="menuBtn"
+      aria-label="เปิดเมนู"
+    >
+      ☰
+    </button>
+
+
+    <div class="logo">
+
+      <div class="logo-main">
+        THBR
+      </div>
+
+      <div class="logo-sub">
+        FONT STUDIO
+      </div>
+
+    </div>
+
+
+    <button
+      class="profile-btn"
+      onclick="goProfile()"
+    >
+      ♡ Profile
+    </button>
+
+  </header>
+
+
+  <!-- =======================================================
+       MAIN
+  ======================================================== -->
+
+  <main id="home">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="hero-badge">
+        ✦ Typography made with love
+      </div>
+
+      <h1>
+        Find your
+        <span>perfect font.</span>
+      </h1>
+
+      <p>
+        ค้นหาฟอนต์ที่ใช่สำหรับงานของคุณ
+        ทดลองพิมพ์ เปรียบเทียบ และเลือกสิทธิ์การใช้งาน
+        ได้ในที่เดียว
+      </p>
+
+    </section>
+
+
+    <!-- =====================================================
+         SEARCH + FILTER
+    ====================================================== -->
+
+    <section class="tools">
+
+      <div class="search-box">
+
+        <span class="search-icon">
+          ⌕
+        </span>
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="ค้นหาชื่อฟอนต์..."
+        >
+
+      </div>
+
+
+      <div class="filter-row">
+
+        <div class="filters">
+
+          <button
+            class="filter-btn active"
+            data-filter="all"
+          >
+            ทั้งหมด
+          </button>
+
+          <button
+            class="filter-btn"
+            data-filter="separate"
+          >
+            แยกสิทธิ์
+          </button>
+
+          <button
+            class="filter-btn"
+            data-filter="single"
+          >
+            ราคาเดียว
+          </button>
+
+        </div>
+
+
+        <div
+          class="font-count"
+          id="fontCount"
+        >
+          กำลังโหลด...
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FONT CARDS
+    ====================================================== -->
+
+    <section
+      class="font-section"
+      id="fonts"
+    >
+
+      <div
+        class="font-grid"
+        id="fontGrid"
+      >
+
+        <div class="loading">
+
+          ✦ กำลังโหลดฟอนต์...
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+  <!-- =======================================================
+       FOOTER
+  ======================================================== -->
+
+  <footer>
+
+    <strong>
+      THBR Font Studio ♡
+    </strong>
+
+    <p>
+      Beautiful fonts for beautiful ideas.
+    </p>
+
+  </footer>
+
+
+
+  <!-- =======================================================
+       VS MODAL
+  ======================================================== -->
+
+  <div
+    class="vs-modal"
+    id="vsModal"
+  >
+
+    <div class="vs-window">
+
+      <div class="modal-header">
+
+        <h2>
+          ⚡ VS Mode
+        </h2>
+
+        <button
+          class="modal-close"
+          onclick="closeVSMode()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="vs-selectors">
+
+        <select id="vsFontA">
+          <option value="">
+            เลือกฟอนต์ A
+          </option>
+        </select>
+
+        <select id="vsFontB">
+          <option value="">
+            เลือกฟอนต์ B
+          </option>
+        </select>
+
+      </div>
+
+
+      <input
+        class="vs-input"
+        id="vsInput"
+        value="สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์"
+        placeholder="พิมพ์ข้อความเพื่อเปรียบเทียบ..."
+      >
+
+
+      <div class="vs-stage">
+
+        <div class="vs-panel">
+
+          <h3 id="vsNameA">
+            Font A
+          </h3>
+
+          <div
+            class="vs-text"
+            id="vsTextA"
+          >
+            สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์
+          </div>
+
+        </div>
+
+
+        <div class="vs-panel">
+
+          <h3 id="vsNameB">
+            Font B
+          </h3>
+
+          <div
+            class="vs-text"
+            id="vsTextB"
+          >
+            สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =======================================================
+       BUY MODAL
+  ======================================================== -->
+
+  <div
+    class="buy-modal"
+    id="buyModal"
+  >
+
+    <div class="buy-window">
+
+      <div class="modal-header">
+
+        <div>
+
+          <h2>
+            ♡ สั่งซื้อฟอนต์
+          </h2>
+
+          <p
+            id="buyFontName"
+            style="
+              color:#9a8290;
+              font-size:13px;
+              margin-top:4px;
+            "
+          ></p>
+
+        </div>
+
+        <button
+          class="modal-close"
+          onclick="closeBuyModal()"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <div class="license-list">
+
+
+        <div
+          class="license-option"
+          data-license="Personal"
+          onclick="selectLicense(this)"
+        >
+
+          <strong>
+            Personal
+
+            <span class="license-price">
+              ฿299
+            </span>
+
+          </strong>
+
+          <span>
+            สำหรับใช้ส่วนตัว / งานส่วนบุคคล
+          </span>
+
+        </div>
+
+
+        <div
+          class="license-option"
+          data-license="Commercial"
+          onclick="selectLicense(this)"
+        >
+
+          <strong>
+            Commercial
+
+            <span class="license-price">
+              ฿699
+            </span>
+
+          </strong>
+
+          <span>
+            สำหรับงานเชิงพาณิชย์
+          </span>
+
+        </div>
+
+
+        <div
+          class="license-option"
+          data-license="Business"
+          onclick="selectLicense(this)"
+        >
+
+          <strong>
+            Business
+
+            <span class="license-price">
+              ฿1,499
+            </span>
+
+          </strong>
+
+          <span>
+            สำหรับธุรกิจ / บริษัท / แบรนด์
+          </span>
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        class="line-order-btn"
+        onclick="orderViaLINE()"
+      >
+        💬 สั่งซื้อผ่าน LINE OA
+      </button>
+
+    </div>
+
+  </div>
+
+
+
+  <!-- =======================================================
+       SUPABASE
+  ======================================================== -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+  <script>
+
+    /* =========================================================
+       SUPABASE CONFIG
+    =========================================================
+
+       เปลี่ยน 2 ค่านี้เป็นของ Supabase Project ของคุณ
+
+    ========================================================= */
+
+    const SUPABASE_URL =
+      "YOUR_SUPABASE_URL";
+
+    const SUPABASE_ANON_KEY =
+      "YOUR_SUPABASE_ANON_KEY";
+
+
+    let supabaseClient = null;
+
+
+    if (
+      SUPABASE_URL !== "YOUR_SUPABASE_URL" &&
+      SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY"
+    ) {
+
+      supabaseClient =
+        window.supabase.createClient(
+          SUPABASE_URL,
+          SUPABASE_ANON_KEY
+        );
+
+    }
+
+
+    /* =========================================================
+       LINE OA
+    =========================================================
+
+       เปลี่ยนเป็น LINE OA ของคุณ
+
+    ========================================================= */
+
+    const LINE_OA_URL =
+      "https://line.me/R/ti/p/@YOUR_LINE_ID";
+
+
+    /* =========================================================
+       VARIABLES
+    ========================================================= */
+
+    let fonts = [];
+
+    let currentFilter = "all";
+
+    let selectedFont = null;
+
+    let selectedLicense = null;
+
+
+    /* =========================================================
+       DEMO DATA
+    =========================================================
+
+       ถ้ายังไม่ได้ต่อ Supabase
+       เว็บจะใช้ข้อมูลตัวอย่างแทน
+
+    ========================================================= */
+
+    const demoFonts = [
+
+      {
+        id: 1,
+
+        name: "BR Fonphrom",
+
+        category: "Thai",
+
+        filter_type: "separate",
+
+        price: 299,
+
+        regular_url: "",
+
+        bold_url: "",
+
+        thin_url: "",
+
+        preview:
+          "สวัสดีค่ะ Font ที่น่ารักสำหรับงานของคุณ"
+      },
+
+
+      {
+        id: 2,
+
+        name: "BR Minimal",
+
+        category: "Modern",
+
+        filter_type: "single",
+
+        price: 590,
+
+        regular_url: "",
+
+        bold_url: "",
+
+        thin_url: "",
+
+        preview:
+          "Minimal type for modern design"
+      },
+
+
+      {
+        id: 3,
+
+        name: "BR Sweet",
+
+        category: "Cute",
+
+        filter_type: "separate",
+
+        price: 399,
+
+        regular_url: "",
+
+        bold_url: "",
+
+        thin_url: "",
+
+        preview:
+          "ฟอนต์หวานๆ สำหรับงานน่ารัก"
+      }
+
+    ];
+
+
+    /* =========================================================
+       LOAD FONTS
+    ========================================================= */
+
+    async function loadFonts() {
+
+      if (!supabaseClient) {
+
+        fonts = demoFonts;
+
+        renderFonts();
+
+        return;
+
+      }
+
+
+      try {
+
+        const {
+          data,
+          error
+        } = await supabaseClient
+
+          .from("fonts")
+
+          .select("*")
+
+          .order("created_at", {
+            ascending: false
+          });
+
+
+        if (error) {
+
+          console.error(error);
+
+          fonts = demoFonts;
+
+          renderFonts();
+
+          return;
+
+        }
+
+
+        fonts = data || [];
+
+        renderFonts();
+
+
+      } catch (error) {
+
+        console.error(error);
+
+        fonts = demoFonts;
+
+        renderFonts();
+
+      }
+
+    }
+
+
+    /* =========================================================
+       FILTER FONTS
+    ========================================================= */
+
+    function getFilteredFonts() {
+
+      const search =
+        document
+          .getElementById("searchInput")
+          .value
+          .trim()
+          .toLowerCase();
+
+
+      return fonts.filter(font => {
+
+        const matchesSearch =
+          !search ||
+          String(font.name || "")
+            .toLowerCase()
+            .includes(search);
+
+
+        let matchesFilter = true;
+
+
+        if (currentFilter === "separate") {
+
+          matchesFilter =
+            font.filter_type === "separate";
+
+        }
+
+
+        if (currentFilter === "single") {
+
+          matchesFilter =
+            font.filter_type === "single";
+
+        }
+
+
+        return (
+          matchesSearch &&
+          matchesFilter
+        );
+
+      });
+
+    }
+
+
+    /* =========================================================
+       RENDER FONT CARDS
+    ========================================================= */
+
+    function renderFonts() {
+
+      const grid =
+        document.getElementById("fontGrid");
+
+      const filtered =
+        getFilteredFonts();
+
+
+      document.getElementById("fontCount")
+        .textContent =
+        `${filtered.length} ฟอนต์`;
+
+
+      if (!filtered.length) {
+
+        grid.innerHTML = `
+
+          <div class="empty">
+
+            🔎 ไม่พบฟอนต์ที่ค้นหา
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      grid.innerHTML =
+        filtered
+          .map(font => createFontCard(font))
+          .join("");
+
+
+      setupFontControls();
+
+    }
+
+
+    /* =========================================================
+       CREATE FONT CARD
+    ========================================================= */
+
+    function createFontCard(font) {
+
+      const id =
+        String(font.id);
+
+
+      const price =
+        Number(font.price || 0);
+
+
+      const preview =
+        font.preview ||
+        "ทดลองพิมพ์ข้อความของคุณ";
+
+
+      const category =
+        font.category ||
+        "Font";
+
+
+      return `
+
+        <article
+          class="font-card"
+          data-font-id="${escapeHTML(id)}"
+        >
+
+
+          <div class="font-card-top">
+
+            <div class="font-name">
+
+              ${escapeHTML(
+                font.name || "Unnamed Font"
+              )}
+
+            </div>
+
+
+            <div class="font-category">
+
+              ${escapeHTML(category)}
+
+            </div>
+
+          </div>
+
+
+          <div class="font-preview">
+
+            <div
+              class="preview-text"
+              contenteditable="true"
+              spellcheck="false"
+              data-default="${escapeHTML(preview)}"
+            >
+
+              ${escapeHTML(preview)}
+
+            </div>
+
+          </div>
+
+
+          <div class="tester">
+
+
+            <input
+              class="tester-input"
+              type="text"
+              value="${escapeHTML(preview)}"
+              placeholder="ลองพิมพ์ข้อความ..."
+            >
+
+
+            <div class="size-control">
+
+              <button
+                class="size-minus"
+                type="button"
+              >
+                −
+              </button>
+
+              <button
+                class="size-plus"
+                type="button"
+              >
+                +
+              </button>
+
+            </div>
+
+
+          </div>
+
+
+          <div class="weight-row">
+
+
+            <button
+              class="weight-btn active"
+              data-weight="400"
+              type="button"
+            >
+              ปกติ
+            </button>
+
+
+            <button
+              class="weight-btn"
+              data-weight="700"
+              type="button"
+            >
+              หนา
+            </button>
+
+
+            <button
+              class="weight-btn"
+              data-weight="300"
+              type="button"
+            >
+              บาง
+            </button>
+
+
+          </div>
+
+
+          <div class="font-bottom">
+
+
+            <div class="price">
+
+              ฿${price.toLocaleString()}
+
+              <small>
+                ราคาเริ่มต้น
+              </small>
+
+            </div>
+
+
+            <div class="card-actions">
+
+
+              <button
+                class="action-btn vs-btn"
+                type="button"
+                onclick="addToVS('${escapeJS(id)}')"
+              >
+                ⚡ VS
+              </button>
+
+
+              <button
+                class="action-btn buy-btn"
+                type="button"
+                onclick="openBuyModal('${escapeJS(id)}')"
+              >
+                ซื้อฟอนต์
+              </button>
+
+
+            </div>
+
+          </div>
+
+
+        </article>
+
+      `;
+
+    }
+
+
+    /* =========================================================
+       FONT CARD CONTROLS
+    ========================================================= */
+
+    function setupFontControls() {
+
+      document
+        .querySelectorAll(".font-card")
+        .forEach(card => {
+
+
+          const input =
+            card.querySelector(".tester-input");
+
+
+          const preview =
+            card.querySelector(".preview-text");
+
+
+          const plus =
+            card.querySelector(".size-plus");
+
+
+          const minus =
+            card.querySelector(".size-minus");
+
+
+          const weightButtons =
+            card.querySelectorAll(".weight-btn");
+
+
+          let size = 38;
+
+
+          input.addEventListener(
+            "input",
+            () => {
+
+              preview.textContent =
+                input.value ||
+                "ทดลองพิมพ์ข้อความ";
+
+            }
+          );
+
+
+          preview.addEventListener(
+            "input",
+            () => {
+
+              input.value =
+                preview.textContent;
+
+            }
+          );
+
+
+          plus.addEventListener(
+            "click",
+            () => {
+
+              size =
+                Math.min(size + 2, 120);
+
+              preview.style.fontSize =
+                size + "px";
+
+            }
+          );
+
+
+          minus.addEventListener(
+            "click",
+            () => {
+
+              size =
+                Math.max(size - 2, 12);
+
+              preview.style.fontSize =
+                size + "px";
+
+            }
+          );
+
+
+          weightButtons.forEach(btn => {
+
+            btn.addEventListener(
+              "click",
+              () => {
+
+                weightButtons
+                  .forEach(b =>
+                    b.classList.remove(
+                      "active"
+                    )
+                  );
+
+
+                btn.classList.add(
+                  "active"
+                );
+
+
+                preview.style.fontWeight =
+                  btn.dataset.weight;
+
+              }
+            );
+
+          });
+
+
+          applyFontFace(
+            card,
+            card.dataset.fontId
+          );
+
+        });
+
+    }
+
+
+    /* =========================================================
+       APPLY FONT
+    ========================================================= */
+
+    function applyFontFace(
+      card,
+      fontId
+    ) {
+
+      const font =
+        fonts.find(
+          f => String(f.id) === String(fontId)
+        );
+
+
+      if (!font) return;
+
+
+      const preview =
+        card.querySelector(".preview-text");
+
+
+      if (
+        font.regular_url
+      ) {
+
+        const family =
+          "Font_" + fontId;
+
+
+        const style =
+          document.createElement("style");
+
+
+        style.textContent = `
+
+          @font-face {
+
+            font-family: "${family}";
+
+            src:
+              url("${font.regular_url}")
+              format("woff2");
+
+            font-weight: 400;
+
+          }
+
+        `;
+
+
+        document.head.appendChild(style);
+
+
+        preview.style.fontFamily =
+          `"${family}", sans-serif`;
+
+      }
+
+    }
+
+
+    /* =========================================================
+       SEARCH
+    ========================================================= */
+
+    document
+      .getElementById("searchInput")
+      .addEventListener(
+        "input",
+        renderFonts
+      );
+
+
+    /* =========================================================
+       FILTER BUTTONS
+    ========================================================= */
+
+    document
+      .querySelectorAll(".filter-btn")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => {
+
+            document
+              .querySelectorAll(".filter-btn")
+              .forEach(btn =>
+                btn.classList.remove(
+                  "active"
+                )
+              );
+
+
+            button.classList.add(
+              "active"
+            );
+
+
+            currentFilter =
+              button.dataset.filter;
+
+
+            renderFonts();
+
+          }
+        );
+
+      });
+
+
+    /* =========================================================
+       SIDEBAR
+    ========================================================= */
+
+    const sidebar =
+      document.getElementById("sidebar");
+
+    const overlay =
+      document.getElementById("overlay");
+
+
+    function openSidebar() {
+
+      sidebar.classList.add("active");
+
+      overlay.classList.add("active");
+
+    }
+
+
+    function closeSidebar() {
+
+      sidebar.classList.remove("active");
+
+      overlay.classList.remove("active");
+
+    }
+
+
+    document
+      .getElementById("menuBtn")
+      .addEventListener(
+        "click",
+        openSidebar
+      );
+
+
+    document
+      .getElementById("closeSidebar")
+      .addEventListener(
+        "click",
+        closeSidebar
+      );
+
+
+    overlay.addEventListener(
+      "click",
+      closeSidebar
+    );
+
+
+    /* =========================================================
+       VS MODE
+    ========================================================= */
+
+    function openVSMode() {
+
+      closeSidebar();
+
+      populateVSSelectors();
+
+      document
+        .getElementById("vsModal")
+        .classList.add("active");
+
+      updateVS();
+
+    }
+
+
+    function closeVSMode() {
+
+      document
+        .getElementById("vsModal")
+        .classList.remove("active");
+
+    }
+
+
+    function populateVSSelectors() {
+
+      const selectA =
+        document.getElementById("vsFontA");
+
+      const selectB =
+        document.getElementById("vsFontB");
+
+
+      const options = fonts
+        .map(font => `
+
+          <option value="${escapeHTML(
+            String(font.id)
+          )}">
+
+            ${escapeHTML(
+              font.name || "Font"
+            )}
+
+          </option>
+
+        `)
+        .join("");
+
+
+      selectA.innerHTML =
+        `<option value="">เลือกฟอนต์ A</option>`
+        + options;
+
+
+      selectB.innerHTML =
+        `<option value="">เลือกฟอนต์ B</option>`
+        + options;
+
+
+      if (fonts.length >= 2) {
+
+        selectA.value =
+          String(fonts[0].id);
+
+        selectB.value =
+          String(fonts[1].id);
+
+      }
+
+    }
+
+
+    document
+      .getElementById("vsFontA")
+      .addEventListener(
+        "change",
+        updateVS
+      );
+
+
+    document
+      .getElementById("vsFontB")
+      .addEventListener(
+        "change",
+        updateVS
+      );
+
+
+    document
+      .getElementById("vsInput")
+      .addEventListener(
+        "input",
+        updateVS
+      );
+
+
+    function updateVS() {
+
+      const idA =
+        document.getElementById(
+          "vsFontA"
+        ).value;
+
+
+      const idB =
+        document.getElementById(
+          "vsFontB"
+        ).value;
+
+
+      const text =
+        document.getElementById(
+          "vsInput"
+        ).value;
+
+
+      const fontA =
+        fonts.find(
+          f => String(f.id) === String(idA)
+        );
+
+
+      const fontB =
+        fonts.find(
+          f => String(f.id) === String(idB)
+        );
+
+
+      document.getElementById(
+        "vsNameA"
+      ).textContent =
+        fontA?.name || "Font A";
+
+
+      document.getElementById(
+        "vsNameB"
+      ).textContent =
+        fontB?.name || "Font B";
+
+
+      document.getElementById(
+        "vsTextA"
+      ).textContent =
+        text;
+
+
+      document.getElementById(
+        "vsTextB"
+      ).textContent =
+        text;
+
+
+      if (fontA?.regular_url) {
+
+        loadVSFont(
+          fontA,
+          "vsFontAStyle"
+        );
+
+        document.getElementById(
+          "vsTextA"
+        ).style.fontFamily =
+          `"VS_${fontA.id}", sans-serif`;
+
+      }
+
+
+      if (fontB?.regular_url) {
+
+        loadVSFont(
+          fontB,
+          "vsFontBStyle"
+        );
+
+        document.getElementById(
+          "vsTextB"
+        ).style.fontFamily =
+          `"VS_${fontB.id}", sans-serif`;
+
+      }
+
+    }
+
+
+    function loadVSFont(
+      font,
+      styleId
+    ) {
+
+      let style =
+        document.getElementById(
+          styleId
+        );
+
+
+      if (!style) {
+
+        style =
+          document.createElement("style");
+
+        style.id =
+          styleId;
+
+        document.head.appendChild(
+          style
+        );
+
+      }
+
+
+      style.textContent = `
+
+        @font-face {
+
+          font-family: "VS_${font.id}";
+
+          src:
+            url("${font.regular_url}")
+            format("woff2");
+
+          font-weight: 400;
+
+        }
+
+      `;
+
+    }
+
+
+    function addToVS(id) {
+
+      openVSMode();
+
+      setTimeout(() => {
+
+        const selectA =
+          document.getElementById(
+            "vsFontA"
+          );
+
+
+        if (
+          selectA &&
+          fonts.some(
+            f => String(f.id) === String(id)
+          )
+        ) {
+
+          selectA.value =
+            String(id);
+
+          updateVS();
+
+        }
+
+      }, 50);
+
+    }
+
+
+    /* =========================================================
+       BUY MODAL
+    ========================================================= */
+
+    function openBuyModal(id) {
+
+      selectedFont =
+        fonts.find(
+          f => String(f.id) === String(id)
+        );
+
+
+      if (!selectedFont) return;
+
+
+      selectedLicense = null;
+
+
+      document
+        .querySelectorAll(".license-option")
+        .forEach(option =>
+          option.classList.remove(
+            "selected"
+          )
+        );
+
+
+      document.getElementById(
+        "buyFontName"
+      ).textContent =
+        selectedFont.name;
+
+
+      document
+        .getElementById("buyModal")
+        .classList.add("active");
+
+    }
+
+
+    function closeBuyModal() {
+
+      document
+        .getElementById("buyModal")
+        .classList.remove("active");
+
+    }
+
+
+    function selectLicense(element) {
+
+      document
+        .querySelectorAll(".license-option")
+        .forEach(option =>
+          option.classList.remove(
+            "selected"
+          )
+        );
+
+
+      element.classList.add(
+        "selected"
+      );
+
+
+      selectedLicense =
+        element.dataset.license;
+
+    }
+
+
+    /* =========================================================
+       ORDER VIA LINE
+    ========================================================= */
+
+    function orderViaLINE() {
+
+      if (!selectedFont) {
+
+        alert(
+          "กรุณาเลือกฟอนต์ก่อน"
+        );
+
+        return;
+
+      }
+
+
+      if (!selectedLicense) {
+
+        alert(
+          "กรุณาเลือกประเภทสิทธิ์การใช้งาน"
+        );
+
+        return;
+
+      }
+
+
+      const orderCode =
+        createOrderCode();
+
+
+      const message =
+
+        `สวัสดีค่ะ สนใจสั่งซื้อฟอนต์\n\n` +
+
+        `Font: ${selectedFont.name}\n` +
+
+        `License: ${selectedLicense}\n` +
+
+        `Order Code: ${orderCode}\n\n` +
+
+        `รบกวนแจ้งรายละเอียดการชำระเงินด้วยค่ะ`;
+
+
+      const url =
+        LINE_OA_URL +
+        "?text=" +
+        encodeURIComponent(message);
+
+
+      window.open(
+        url,
+        "_blank"
+      );
+
+    }
+
+
+    /* =========================================================
+       CREATE ORDER CODE
+    ========================================================= */
+
+    function createOrderCode() {
+
+      const date =
+        new Date();
+
+
+      const y =
+        date.getFullYear();
+
+
+      const m =
+        String(
+          date.getMonth() + 1
+        ).padStart(2, "0");
+
+
+      const d =
+        String(
+          date.getDate()
+        ).padStart(2, "0");
+
+
+      const random =
+        Math.random()
+          .toString(36)
+          .substring(2, 7)
+          .toUpperCase();
+
+
+      return `THBR-${y}${m}${d}-${random}`;
+
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+    ========================================================= */
+
+    function scrollToFonts() {
+
+      closeSidebar();
+
+      document
+        .getElementById("fonts")
+        .scrollIntoView({
+          behavior: "smooth"
+        });
+
+    }
+
+
+    function goHome() {
+
+      closeSidebar();
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+    }
+
+
+    function goProfile() {
+
+      window.location.href =
+        "profile.html";
+
+    }
+
+
+    function goLogin() {
+
+      window.location.href =
+        "login.html";
+
+    }
+
+
+    function openLINE() {
+
+      window.open(
+        LINE_OA_URL,
+        "_blank"
+      );
+
+    }
+
+
+    /* =========================================================
+       ESCAPE HTML
+    ========================================================= */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    function escapeJS(value) {
+
+      return String(value)
+        .replaceAll("\\", "\\\\")
+        .replaceAll("'", "\\'");
+
+    }
+
+
+    /* =========================================================
+       CLOSE MODALS WHEN CLICK OUTSIDE
+    ========================================================= */
+
+    document
+      .getElementById("vsModal")
+      .addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target.id ===
+            "vsModal"
+          ) {
+
+            closeVSMode();
+
+          }
+
+        }
+      );
+
+
+    document
+      .getElementById("buyModal")
+      .addEventListener(
+        "click",
+        event => {
+
+          if (
+            event.target.id ===
+            "buyModal"
+          ) {
+
+            closeBuyModal();
+
+          }
+
+        }
+      );
+
+
+    /* =========================================================
+       ESC KEY
+    ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (
+          event.key === "Escape"
+        ) {
+
+          closeSidebar();
+
+          closeVSMode();
+
+          closeBuyModal();
+
+        }
+
+      }
+    );
+
+
+    /* =========================================================
+       START
+    ========================================================= */
+
+    loadFonts();
+
+  </script>
+
+
+</body>
+</html>
