@@ -1,2994 +1,3570 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+<title>PLENG FONT — ฟอนต์น่ารักสำหรับทุกงาน</title>
 
-  <title>THBR Font Studio</title>
+<style>
+/* =====================================================
+   RESET
+===================================================== */
 
-  <!-- Google Font -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&family=Prompt:wght@300;400;500;600&display=swap"
-    rel="stylesheet"
-  >
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-  <style>
+html {
+    scroll-behavior: smooth;
+}
 
-    /* =========================================================
-       1. RESET
-    ========================================================= */
+body {
+    font-family:
+        "Noto Sans Thai",
+        "Prompt",
+        Arial,
+        sans-serif;
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    background: #fffafc;
+    color: #352c32;
+    min-height: 100vh;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
 
-    body {
-      font-family: "Prompt", sans-serif;
-      background: #fff8fb;
-      color: #3b3040;
-      min-height: 100vh;
-    }
+button {
+    cursor: pointer;
+}
 
-    button,
-    input,
-    select,
-    textarea {
-      font-family: inherit;
-    }
+a {
+    text-decoration: none;
+    color: inherit;
+}
 
-    button {
-      cursor: pointer;
-    }
+/* =====================================================
+   VARIABLES
+===================================================== */
 
+:root {
+    --pink: #ff7da8;
+    --pink-dark: #ed5687;
+    --pink-light: #ffe8f0;
 
-    /* =========================================================
-       2. HEADER
-    ========================================================= */
+    --purple: #9a7cff;
+    --purple-light: #eee9ff;
 
-    .header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    --yellow: #ffd86b;
+    --green: #72c99b;
 
-      height: 72px;
+    --text: #352c32;
+    --muted: #8e8087;
 
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(15px);
+    --white: #ffffff;
+    --border: #f0dce4;
 
-      border-bottom: 1px solid #f0dfe8;
+    --shadow:
+        0 12px 35px rgba(112, 60, 85, 0.08);
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    --radius: 22px;
+}
 
-      padding: 0 28px;
-    }
+/* =====================================================
+   HEADER
+===================================================== */
 
+.header {
+    height: 72px;
 
-    /* Hamburger */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 
-    .menu-btn {
-      width: 44px;
-      height: 44px;
+    display: flex;
+    align-items: center;
 
-      border: none;
-      border-radius: 14px;
+    padding: 0 25px;
 
-      background: #fff0f6;
+    background: rgba(255,255,255,.94);
+    backdrop-filter: blur(14px);
 
-      color: #d85b91;
+    border-bottom: 1px solid var(--border);
+}
 
-      font-size: 23px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    font-size: 22px;
+    font-weight: 900;
 
-      transition: 0.2s;
-    }
+    color: var(--pink-dark);
 
-    .menu-btn:hover {
-      background: #fbd7e7;
-      transform: translateY(-2px);
-    }
+    white-space: nowrap;
+}
 
+.logo-star {
+    width: 38px;
+    height: 38px;
 
-    /* Logo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    .logo {
-      position: absolute;
-      left: 50%;
-      transform: translateX(-50%);
+    border-radius: 13px;
 
-      text-align: center;
-      line-height: 1.1;
-    }
+    background: var(--pink-light);
 
-    .logo-main {
-      font-family: "Kanit", sans-serif;
+    font-size: 20px;
+}
 
-      font-size: 25px;
-      font-weight: 600;
+.header-center {
+    flex: 1;
 
-      color: #d9578e;
-    }
+    display: flex;
+    justify-content: center;
 
-    .logo-sub {
-      font-size: 10px;
-      letter-spacing: 2px;
+    padding: 0 30px;
+}
 
-      color: #a88a9b;
-    }
+.header-search {
+    width: min(500px, 100%);
 
+    position: relative;
+}
 
-    /* Profile */
+.header-search input {
+    width: 100%;
 
-    .profile-btn {
-      border: 1px solid #f0d5e2;
+    height: 43px;
 
-      background: white;
+    border: 1px solid var(--border);
+    border-radius: 50px;
 
-      border-radius: 20px;
+    padding: 0 20px 0 45px;
 
-      padding: 9px 15px;
+    outline: none;
 
-      color: #76566a;
+    background: #fff7fa;
+}
 
-      transition: 0.2s;
-    }
+.header-search span {
+    position: absolute;
+    left: 17px;
+    top: 11px;
+}
 
-    .profile-btn:hover {
-      background: #fff0f6;
-    }
+.header-actions {
+    display: flex;
+    gap: 8px;
+}
 
+.icon-btn {
+    width: 43px;
+    height: 43px;
 
-    /* =========================================================
-       3. SIDEBAR
-    ========================================================= */
+    border: 1px solid var(--border);
+    background: white;
+
+    border-radius: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    transition: .2s;
+}
+
+.icon-btn:hover {
+    background: var(--pink-light);
+    transform: translateY(-2px);
+}
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+.sidebar {
+    position: fixed;
+
+    left: 0;
+    top: 72px;
+    bottom: 0;
+
+    width: 280px;
+
+    background: white;
+
+    border-right: 1px solid var(--border);
+
+    padding: 25px 17px;
+
+    z-index: 900;
+
+    overflow-y: auto;
+
+    transition: .3s;
+}
+
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+.sidebar-title {
+    padding: 8px 12px 15px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.menu-item {
+    width: 100%;
+
+    border: 0;
+    background: transparent;
+
+    display: flex;
+    align-items: center;
+    gap: 13px;
+
+    padding: 13px 14px;
+
+    border-radius: 14px;
+
+    margin-bottom: 4px;
+
+    text-align: left;
+
+    color: #584b51;
+
+    transition: .2s;
+}
+
+.menu-item:hover,
+.menu-item.active {
+    background: var(--pink-light);
+    color: var(--pink-dark);
+}
+
+.menu-icon {
+    width: 25px;
+
+    text-align: center;
+
+    font-size: 18px;
+}
+
+.menu-sub {
+    margin-left: 43px;
+
+    padding: 8px 12px;
+
+    font-size: 13px;
+
+    color: var(--muted);
+}
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.main {
+    margin-left: 280px;
+
+    min-height: calc(100vh - 72px);
+
+    padding: 35px;
+
+    transition: .3s;
+}
+
+.main.full {
+    margin-left: 0;
+}
+
+.page {
+    display: none;
+
+    max-width: 1400px;
+
+    margin: auto;
+}
+
+.page.active {
+    display: block;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.hero {
+    position: relative;
+
+    padding: 50px 45px;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff0f5,
+            #f7f0ff
+        );
+
+    overflow: hidden;
+
+    margin-bottom: 30px;
+}
+
+.hero::after {
+    content: "✦";
+
+    position: absolute;
+
+    right: 8%;
+    top: 20px;
+
+    font-size: 120px;
+
+    color: rgba(255,125,168,.15);
+
+    transform: rotate(20deg);
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 60px);
+
+    line-height: 1.1;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 span {
+    color: var(--pink-dark);
+}
+
+.hero p {
+    color: var(--muted);
+
+    max-width: 600px;
+
+    line-height: 1.8;
+
+    margin-bottom: 25px;
+}
+
+.hero-btn {
+    border: 0;
+
+    padding: 13px 22px;
+
+    border-radius: 14px;
+
+    color: white;
+
+    background: var(--pink);
+
+    font-weight: 800;
+
+    box-shadow: 0 8px 20px rgba(255,125,168,.25);
+}
+
+/* =====================================================
+   TOOLBAR
+===================================================== */
+
+.toolbar {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+
+    flex-wrap: wrap;
+}
+
+.toolbar h2 {
+    font-size: 25px;
+}
+
+.filters {
+    display: flex;
+
+    gap: 7px;
+
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    border: 1px solid var(--border);
+
+    background: white;
+
+    padding: 9px 15px;
+
+    border-radius: 50px;
+
+    font-size: 13px;
+}
+
+.filter-btn.active {
+    background: var(--pink);
+    color: white;
+    border-color: var(--pink);
+}
+
+/* =====================================================
+   FONT GRID
+===================================================== */
+
+.font-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 22px;
+}
+
+.font-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    transition: .25s;
+}
+
+.font-card:hover {
+    transform: translateY(-5px);
+}
+
+.font-preview {
+    min-height: 190px;
+
+    padding: 22px;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            #ffeaf2,
+            transparent 50%
+        ),
+        #fff;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+.font-name {
+    font-weight: 900;
+
+    color: var(--pink-dark);
+}
+
+.preview-text {
+    font-size: 42px;
+
+    line-height: 1.2;
+
+    word-break: break-word;
+}
+
+.font-info {
+    padding: 20px;
+}
+
+.font-info h3 {
+    margin-bottom: 5px;
+}
+
+.font-description {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 15px;
+}
+
+.price-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 10px;
+}
+
+.price {
+    font-weight: 900;
+
+    color: var(--pink-dark);
+}
+
+.card-actions {
+    display: flex;
+
+    gap: 7px;
+
+    margin-top: 15px;
+}
+
+.btn {
+    border: 0;
+
+    padding: 10px 14px;
+
+    border-radius: 12px;
+
+    font-weight: 700;
+
+    background: #f5edf0;
+}
+
+.btn-primary {
+    background: var(--pink);
+
+    color: white;
+}
+
+.btn-purple {
+    background: var(--purple-light);
+
+    color: #7057dd;
+}
+
+/* =====================================================
+   TESTER
+===================================================== */
+
+.tester {
+    margin-top: 30px;
+
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+}
+
+.tester-header {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin-bottom: 15px;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+.tester-controls {
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.tester-controls select,
+.tester-controls input {
+    height: 38px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 0 10px;
+
+    background: white;
+}
+
+.live-text {
+    width: 100%;
+
+    min-height: 160px;
+
+    border: 2px dashed var(--border);
+
+    border-radius: 15px;
+
+    padding: 25px;
+
+    resize: vertical;
+
+    outline: none;
+
+    font-size: 42px;
+}
+
+/* =====================================================
+   VS MODE
+===================================================== */
+
+.vs-grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 20px;
+}
+
+.vs-box {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    box-shadow: var(--shadow);
+}
+
+.vs-box select {
+    width: 100%;
+
+    height: 42px;
+
+    margin-bottom: 15px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 0 10px;
+}
+
+.vs-text {
+    width: 100%;
+
+    min-height: 250px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    font-size: 40px;
+
+    resize: vertical;
+
+    outline: none;
+}
+
+.vs-input {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+}
+
+/* =====================================================
+   PROFILE
+===================================================== */
+
+.profile-box {
+    max-width: 900px;
+
+    margin: auto;
+}
+
+.profile-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 30px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 20px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    background: var(--pink-light);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+/* =====================================================
+   LOGIN
+===================================================== */
+
+.login-box {
+    max-width: 450px;
+
+    margin: 70px auto;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow: var(--shadow);
+
+    text-align: center;
+}
+
+.google-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    margin-top: 20px;
+
+    border: 1px solid var(--border);
+
+    background: white;
+
+    border-radius: 13px;
+
+    font-weight: 800;
+}
+
+/* =====================================================
+   ORDERS
+===================================================== */
+
+.order {
+    display: grid;
+
+    grid-template-columns:
+        1fr auto auto;
+
+    gap: 20px;
+
+    align-items: center;
+
+    padding: 18px 0;
+
+    border-bottom: 1px solid var(--border);
+}
+
+.status {
+    padding: 6px 12px;
+
+    border-radius: 50px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+}
+
+.status.approved {
+    background: #e6f7ed;
+
+    color: #35a466;
+}
+
+.status.pending {
+    background: #fff5d9;
+
+    color: #b98a15;
+}
+
+.status.rejected {
+    background: #ffe6e6;
+
+    color: #dc5b5b;
+}
+
+/* =====================================================
+   ADMIN
+===================================================== */
+
+.admin-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px,1fr));
+
+    gap: 18px;
+
+    margin-bottom: 25px;
+}
+
+.admin-stat {
+    padding: 22px;
+
+    border-radius: 20px;
+
+    background: white;
+
+    border: 1px solid var(--border);
+
+    box-shadow: var(--shadow);
+}
+
+.admin-stat strong {
+    display: block;
+
+    font-size: 30px;
+
+    margin-top: 8px;
+
+    color: var(--pink-dark);
+}
+
+.form-card {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 22px;
+
+    padding: 25px;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap: 15px;
+}
+
+.field {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 6px;
+}
+
+.field.full {
+    grid-column: 1/-1;
+}
+
+.field label {
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.field input,
+.field select,
+.field textarea {
+    width: 100%;
+
+    border: 1px solid var(--border);
+
+    border-radius: 11px;
+
+    padding: 11px;
+
+    outline: none;
+
+    background: white;
+}
+
+.field textarea {
+    min-height: 100px;
+
+    resize: vertical;
+}
+
+.admin-orders {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    min-width: 750px;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 13px;
+
+    border-bottom: 1px solid var(--border);
+
+    text-align: left;
+
+    font-size: 13px;
+}
+
+.admin-table th {
+    color: var(--muted);
+}
+
+/* =====================================================
+   CONTENT PAGE
+===================================================== */
+
+.content-box {
+    background: white;
+
+    border: 1px solid var(--border);
+
+    border-radius: 25px;
+
+    padding: 35px;
+
+    box-shadow: var(--shadow);
+
+    line-height: 1.9;
+}
+
+.content-box h2 {
+    margin-bottom: 20px;
+
+    color: var(--pink-dark);
+}
+
+.content-box h3 {
+    margin-top: 25px;
+
+    margin-bottom: 8px;
+}
+
+.content-box p {
+    color: #655860;
+}
+
+/* =====================================================
+   MODAL
+===================================================== */
+
+.modal {
+    position: fixed;
+
+    inset: 0;
+
+    background: rgba(45,30,38,.45);
+
+    z-index: 2000;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-card {
+    width: min(550px,100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    background: white;
+
+    border-radius: 25px;
+
+    padding: 28px;
+
+    position: relative;
+}
+
+.close {
+    position: absolute;
+
+    top: 15px;
+    right: 15px;
+
+    border: 0;
+
+    background: #f7edf1;
+
+    width: 35px;
+    height: 35px;
+
+    border-radius: 50%;
+}
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+.toast {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    background: #352c32;
+
+    color: white;
+
+    padding: 13px 18px;
+
+    border-radius: 13px;
+
+    transform: translateY(100px);
+
+    opacity: 0;
+
+    transition: .3s;
+
+    z-index: 5000;
+}
+
+.toast.show {
+    transform: translateY(0);
+
+    opacity: 1;
+}
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 900px) {
 
     .sidebar {
-      position: fixed;
-
-      top: 0;
-      left: -310px;
-
-      width: 290px;
-      height: 100vh;
-
-      z-index: 2000;
-
-      background: white;
-
-      box-shadow: 10px 0 40px rgba(70, 35, 55, 0.12);
-
-      transition: left 0.3s ease;
-
-      padding: 24px;
+        box-shadow: 10px 0 30px rgba(0,0,0,.08);
     }
 
-    .sidebar.active {
-      left: 0;
+    .main {
+        margin-left: 0;
+        padding: 22px;
     }
 
-    .sidebar-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      margin-bottom: 30px;
+    .header-center {
+        padding: 0 10px;
     }
 
-    .sidebar-title {
-      font-size: 21px;
-      font-weight: 600;
-      color: #d9578e;
+    .header-search {
+        max-width: 280px;
     }
 
-    .close-sidebar {
-      width: 38px;
-      height: 38px;
+    .vs-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-      border: none;
-      border-radius: 12px;
+@media (max-width: 650px) {
 
-      background: #fff0f6;
+    .header {
+        padding: 0 13px;
 
-      color: #c85b87;
-
-      font-size: 20px;
+        height: 65px;
     }
 
-    .side-menu {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .sidebar {
+        top: 65px;
+
+        width: 290px;
     }
 
-    .side-menu button {
-      width: 100%;
-
-      text-align: left;
-
-      padding: 14px 16px;
-
-      border: none;
-      border-radius: 14px;
-
-      background: transparent;
-
-      color: #655263;
-
-      font-size: 15px;
+    .logo {
+        font-size: 17px;
     }
 
-    .side-menu button:hover {
-      background: #fff0f6;
-      color: #d9578e;
+    .logo-star {
+        width: 34px;
+        height: 34px;
     }
 
-    .sidebar-footer {
-      position: absolute;
-
-      bottom: 25px;
-      left: 24px;
-      right: 24px;
-
-      background: #fff5f9;
-
-      padding: 16px;
-
-      border-radius: 16px;
-
-      font-size: 13px;
-      color: #96798a;
+    .header-center {
+        display: none;
     }
 
-
-    /* Sidebar overlay */
-
-    .overlay {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 1500;
-
-      background: rgba(45, 20, 35, 0.25);
-
-      opacity: 0;
-      visibility: hidden;
-
-      transition: 0.3s;
+    .main {
+        padding: 15px;
     }
-
-    .overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-
-    /* =========================================================
-       4. MAIN
-    ========================================================= */
-
-    main {
-      width: 100%;
-    }
-
-
-    /* =========================================================
-       5. HERO
-    ========================================================= */
 
     .hero {
-      max-width: 1200px;
+        padding: 30px 22px;
 
-      margin: 0 auto;
-
-      padding: 70px 24px 45px;
-
-      text-align: center;
-    }
-
-    .hero-badge {
-      display: inline-block;
-
-      padding: 7px 15px;
-
-      border-radius: 30px;
-
-      background: #ffe8f1;
-
-      color: #d25688;
-
-      font-size: 13px;
-
-      margin-bottom: 18px;
+        border-radius: 24px;
     }
 
     .hero h1 {
-      font-family: "Kanit", sans-serif;
-
-      font-size: clamp(38px, 6vw, 68px);
-
-      line-height: 1.05;
-
-      color: #4b3544;
-
-      margin-bottom: 15px;
-    }
-
-    .hero h1 span {
-      color: #d9578e;
-    }
-
-    .hero p {
-      max-width: 650px;
-
-      margin: auto;
-
-      color: #947d8b;
-
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-
-    /* =========================================================
-       6. SEARCH
-    ========================================================= */
-
-    .tools {
-      max-width: 1200px;
-
-      margin: 0 auto 35px;
-
-      padding: 0 24px;
-    }
-
-    .search-box {
-      position: relative;
-
-      width: 100%;
-    }
-
-    .search-box input {
-      width: 100%;
-
-      height: 56px;
-
-      border: 1px solid #efdce5;
-
-      border-radius: 18px;
-
-      background: white;
-
-      padding: 0 20px 0 52px;
-
-      font-size: 15px;
-
-      outline: none;
-
-      color: #443542;
-
-      transition: 0.2s;
-    }
-
-    .search-box input:focus {
-      border-color: #e889ad;
-
-      box-shadow: 0 0 0 4px rgba(232, 137, 173, 0.12);
-    }
-
-    .search-icon {
-      position: absolute;
-
-      left: 18px;
-      top: 50%;
-
-      transform: translateY(-50%);
-
-      font-size: 20px;
-
-      color: #bd9bab;
-    }
-
-
-    /* Filters */
-
-    .filter-row {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: center;
-
-      gap: 15px;
-
-      margin-top: 16px;
-
-      flex-wrap: wrap;
-    }
-
-    .filters {
-      display: flex;
-
-      gap: 8px;
-
-      flex-wrap: wrap;
-    }
-
-    .filter-btn {
-      border: 1px solid #efdce5;
-
-      background: white;
-
-      color: #846a78;
-
-      border-radius: 30px;
-
-      padding: 9px 16px;
-
-      font-size: 13px;
-
-      transition: 0.2s;
-    }
-
-    .filter-btn.active,
-    .filter-btn:hover {
-      background: #d9578e;
-
-      color: white;
-
-      border-color: #d9578e;
-    }
-
-    .font-count {
-      font-size: 13px;
-      color: #a38c99;
-    }
-
-
-    /* =========================================================
-       7. FONT GRID
-    ========================================================= */
-
-    .font-section {
-      max-width: 1200px;
-
-      margin: auto;
-
-      padding: 0 24px 80px;
+        font-size: 35px;
     }
 
     .font-grid {
-      display: grid;
-
-      grid-template-columns: repeat(3, 1fr);
-
-      gap: 22px;
+        grid-template-columns: 1fr;
     }
 
-
-    /* =========================================================
-       8. FONT CARD
-    ========================================================= */
-
-    .font-card {
-      background: white;
-
-      border: 1px solid #f0dfe8;
-
-      border-radius: 24px;
-
-      padding: 20px;
-
-      box-shadow: 0 8px 25px rgba(100, 55, 80, 0.05);
-
-      transition: 0.25s;
-
-      overflow: hidden;
+    .form-grid {
+        grid-template-columns: 1fr;
     }
 
-    .font-card:hover {
-      transform: translateY(-4px);
-
-      box-shadow: 0 15px 35px rgba(100, 55, 80, 0.10);
+    .field.full {
+        grid-column: auto;
     }
 
-    .font-card-top {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: flex-start;
-
-      margin-bottom: 15px;
+    .order {
+        grid-template-columns: 1fr;
+        gap: 8px;
     }
 
-    .font-name {
-      font-size: 20px;
-      font-weight: 600;
-
-      color: #493541;
-    }
-
-    .font-category {
-      font-size: 11px;
-
-      padding: 5px 9px;
-
-      background: #fff0f6;
-
-      color: #c45b86;
-
-      border-radius: 20px;
-    }
-
-
-    /* Preview */
-
-    .font-preview {
-      min-height: 150px;
-
-      border-radius: 17px;
-
-      background: #fff8fb;
-
-      border: 1px solid #f4e5eb;
-
-      padding: 20px;
-
-      display: flex;
-      align-items: center;
-
-      margin-bottom: 15px;
-    }
-
-    .preview-text {
-      width: 100%;
-
-      outline: none;
-
-      word-break: break-word;
-
-      font-size: 38px;
-
-      line-height: 1.3;
-
-      color: #44333e;
-    }
-
-
-    /* Tester controls */
-
-    .tester {
-      display: grid;
-
-      grid-template-columns: 1fr auto;
-
-      gap: 10px;
-
-      margin-bottom: 12px;
-    }
-
-    .tester-input {
-      width: 100%;
-
-      min-width: 0;
-
-      height: 42px;
-
-      border: 1px solid #eadbe3;
-
-      border-radius: 12px;
-
-      padding: 0 12px;
-
-      outline: none;
-
-      color: #493541;
-    }
-
-    .tester-input:focus {
-      border-color: #e889ad;
-    }
-
-    .size-control {
-      display: flex;
-
-      align-items: center;
-
-      gap: 5px;
-    }
-
-    .size-control button {
-      width: 38px;
-      height: 38px;
-
-      border: none;
-
-      background: #fff0f6;
-
-      color: #c75783;
-
-      border-radius: 10px;
-    }
-
-
-    /* Weight */
-
-    .weight-row {
-      display: flex;
-
-      gap: 6px;
-
-      margin-bottom: 15px;
-    }
-
-    .weight-btn {
-      flex: 1;
-
-      border: 1px solid #eadbe3;
-
-      background: white;
-
-      color: #856e7b;
-
-      border-radius: 10px;
-
-      padding: 7px;
-
-      font-size: 11px;
-    }
-
-    .weight-btn.active {
-      background: #4b3544;
-
-      border-color: #4b3544;
-
-      color: white;
-    }
-
-
-    /* Price */
-
-    .font-bottom {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: center;
-
-      gap: 10px;
-    }
-
-    .price {
-      font-weight: 600;
-
-      color: #d9578e;
-    }
-
-    .price small {
-      display: block;
-
-      font-weight: 400;
-
-      color: #a58d9a;
-
-      font-size: 10px;
-    }
-
-    .card-actions {
-      display: flex;
-
-      gap: 7px;
-    }
-
-    .action-btn {
-      border: none;
-
-      border-radius: 11px;
-
-      padding: 9px 12px;
-
-      font-size: 12px;
-    }
-
-    .vs-btn {
-      background: #f5edf2;
-
-      color: #725c69;
-    }
-
-    .buy-btn {
-      background: #d9578e;
-
-      color: white;
-    }
-
-    .buy-btn:hover {
-      background: #c7477d;
-    }
-
-
-    /* =========================================================
-       9. LOADING / EMPTY
-    ========================================================= */
-
-    .loading {
-      grid-column: 1 / -1;
-
-      text-align: center;
-
-      padding: 60px;
-
-      color: #a58b99;
-    }
-
-    .empty {
-      grid-column: 1 / -1;
-
-      text-align: center;
-
-      padding: 60px;
-
-      color: #a58b99;
-    }
-
-
-    /* =========================================================
-       10. VS MODE
-    ========================================================= */
-
-    .vs-modal {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 3000;
-
-      background: rgba(40, 20, 32, 0.55);
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-    }
-
-    .vs-modal.active {
-      display: flex;
-    }
-
-    .vs-window {
-      width: min(1000px, 100%);
-
-      max-height: 90vh;
-
-      overflow-y: auto;
-
-      background: white;
-
-      border-radius: 25px;
-
-      padding: 25px;
-    }
-
-    .modal-header {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: center;
-
-      margin-bottom: 20px;
-    }
-
-    .modal-header h2 {
-      color: #4b3544;
-    }
-
-    .modal-close {
-      width: 40px;
-      height: 40px;
-
-      border: none;
-
-      border-radius: 12px;
-
-      background: #fff0f6;
-
-      color: #c75783;
-
-      font-size: 20px;
-    }
-
-    .vs-selectors {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 15px;
-
-      margin-bottom: 20px;
-    }
-
-    .vs-selectors select {
-      width: 100%;
-
-      height: 45px;
-
-      border: 1px solid #eadbe3;
-
-      border-radius: 12px;
-
-      padding: 0 12px;
-
-      outline: none;
-
-      background: white;
-    }
-
-    .vs-input {
-      width: 100%;
-
-      height: 50px;
-
-      border: 1px solid #eadbe3;
-
-      border-radius: 13px;
-
-      padding: 0 15px;
-
-      margin-bottom: 20px;
-
-      outline: none;
-    }
-
-    .vs-stage {
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: 15px;
-    }
-
-    .vs-panel {
-      min-height: 280px;
-
-      background: #fff8fb;
-
-      border: 1px solid #f0dfe8;
-
-      border-radius: 18px;
-
-      padding: 20px;
-    }
-
-    .vs-panel h3 {
-      font-size: 14px;
-
-      color: #a1788c;
-
-      margin-bottom: 20px;
+    .live-text {
+        font-size: 28px;
     }
 
     .vs-text {
-      font-size: 42px;
-
-      line-height: 1.4;
-
-      word-break: break-word;
-
-      color: #44333e;
+        font-size: 28px;
     }
-
-
-    /* =========================================================
-       11. BUY MODAL
-    ========================================================= */
-
-    .buy-modal {
-      position: fixed;
-
-      inset: 0;
-
-      z-index: 3000;
-
-      background: rgba(40, 20, 32, 0.55);
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      padding: 20px;
-    }
-
-    .buy-modal.active {
-      display: flex;
-    }
-
-    .buy-window {
-      width: min(500px, 100%);
-
-      background: white;
-
-      border-radius: 25px;
-
-      padding: 25px;
-    }
-
-    .license-list {
-      display: grid;
-
-      gap: 10px;
-
-      margin: 20px 0;
-    }
-
-    .license-option {
-      border: 1px solid #eadbe3;
-
-      border-radius: 15px;
-
-      padding: 15px;
-
-      cursor: pointer;
-
-      transition: 0.2s;
-    }
-
-    .license-option:hover,
-    .license-option.selected {
-      border-color: #d9578e;
-
-      background: #fff3f8;
-    }
-
-    .license-option strong {
-      display: block;
-
-      color: #493541;
-
-      margin-bottom: 4px;
-    }
-
-    .license-option span {
-      font-size: 12px;
-
-      color: #9b8490;
-    }
-
-    .license-price {
-      float: right;
-
-      color: #d9578e;
-
-      font-weight: 600;
-    }
-
-    .line-order-btn {
-      width: 100%;
-
-      height: 48px;
-
-      border: none;
-
-      border-radius: 14px;
-
-      background: #06c755;
-
-      color: white;
-
-      font-size: 15px;
-
-      font-weight: 500;
-    }
-
-
-    /* =========================================================
-       12. FOOTER
-    ========================================================= */
-
-    footer {
-      background: #493541;
-
-      color: #eadde4;
-
-      padding: 35px 24px;
-
-      text-align: center;
-    }
-
-    footer strong {
-      color: white;
-    }
-
-    footer p {
-      font-size: 12px;
-
-      margin-top: 7px;
-
-      color: #bdaeb7;
-    }
-
-
-    /* =========================================================
-       13. RESPONSIVE
-    ========================================================= */
-
-
-    /* TABLET */
-
-    @media (max-width: 900px) {
-
-      .font-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .hero {
-        padding-top: 55px;
-      }
-
-    }
-
-
-    /* MOBILE */
-
-    @media (max-width: 600px) {
-
-      .header {
-        height: 64px;
-
-        padding: 0 15px;
-      }
-
-      .menu-btn {
-        width: 40px;
-        height: 40px;
-      }
-
-      .profile-btn {
-        padding: 8px 11px;
-
-        font-size: 12px;
-      }
-
-      .logo-main {
-        font-size: 20px;
-      }
-
-      .logo-sub {
-        font-size: 8px;
-      }
-
-      .hero {
-        padding: 45px 18px 35px;
-      }
-
-      .hero h1 {
-        font-size: 40px;
-      }
-
-      .hero p {
-        font-size: 14px;
-      }
-
-      .tools {
-        padding: 0 15px;
-      }
-
-      .filter-row {
-        align-items: flex-start;
-
-        flex-direction: column;
-      }
-
-      .font-section {
-        padding: 0 15px 60px;
-      }
-
-      .font-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .font-card {
-        border-radius: 20px;
-      }
-
-      .preview-text {
-        font-size: 32px;
-      }
-
-      .vs-selectors,
-      .vs-stage {
-        grid-template-columns: 1fr;
-      }
-
-      .vs-window,
-      .buy-window {
-        padding: 18px;
-
-        border-radius: 20px;
-      }
-
-      .vs-text {
-        font-size: 30px;
-      }
-
-    }
-
-
-    /* SMALL MOBILE */
-
-    @media (max-width: 380px) {
-
-      .logo {
-        display: none;
-      }
-
-      .tester {
-        grid-template-columns: 1fr;
-      }
-
-      .font-bottom {
-        align-items: flex-start;
-
-        flex-direction: column;
-      }
-
-      .card-actions {
-        width: 100%;
-      }
-
-      .action-btn {
-        flex: 1;
-      }
-
-    }
-
-  </style>
+}
+</style>
 </head>
-
 
 <body>
 
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
-  <!-- =======================================================
-       SIDEBAR
-  ======================================================== -->
-
-  <aside
-    class="sidebar"
-    id="sidebar"
-  >
-
-    <div class="sidebar-header">
-
-      <div class="sidebar-title">
-        ♡ THBR Font
-      </div>
-
-      <button
-        class="close-sidebar"
-        id="closeSidebar"
-      >
-        ×
-      </button>
-
-    </div>
-
-
-    <nav class="side-menu">
-
-      <button onclick="goHome()">
-        🏠 หน้าหลัก
-      </button>
-
-      <button onclick="scrollToFonts()">
-        🔤 ฟอนต์ทั้งหมด
-      </button>
-
-      <button onclick="openVSMode()">
-        ⚡ VS Mode
-      </button>
-
-      <button onclick="goProfile()">
-        👤 โปรไฟล์
-      </button>
-
-      <button onclick="goLogin()">
-        🔐 เข้าสู่ระบบ
-      </button>
-
-      <button onclick="openLINE()">
-        💬 ติดต่อ LINE OA
-      </button>
-
-    </nav>
-
-
-    <div class="sidebar-footer">
-
-      <strong>THBR Font Studio</strong>
-
-      <br>
-
-      ฟอนต์ที่ออกแบบด้วยความตั้งใจ ♡
-
-    </div>
-
-  </aside>
-
-
-  <div
-    class="overlay"
-    id="overlay"
-  ></div>
-
-
-  <!-- =======================================================
-       HEADER
-  ======================================================== -->
-
-  <header class="header">
+<header class="header">
 
     <button
-      class="menu-btn"
-      id="menuBtn"
-      aria-label="เปิดเมนู"
-    >
-      ☰
+        class="icon-btn"
+        onclick="toggleSidebar()"
+        title="เปิดเมนู">
+        ☰
     </button>
-
 
     <div class="logo">
+        <div class="logo-star">✦</div>
+        PLENG FONT
+    </div>
 
-      <div class="logo-main">
-        THBR
-      </div>
+    <div class="header-center">
 
-      <div class="logo-sub">
-        FONT STUDIO
-      </div>
+        <div class="header-search">
+
+            <span>🔎</span>
+
+            <input
+                id="headerSearch"
+                type="search"
+                placeholder="ค้นหาฟอนต์..."
+                oninput="searchFonts(this.value)"
+            >
+
+        </div>
 
     </div>
 
-
-    <button
-      class="profile-btn"
-      onclick="goProfile()"
-    >
-      ♡ Profile
-    </button>
-
-  </header>
-
-
-  <!-- =======================================================
-       MAIN
-  ======================================================== -->
-
-  <main id="home">
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-      <div class="hero-badge">
-        ✦ Typography made with love
-      </div>
-
-      <h1>
-        Find your
-        <span>perfect font.</span>
-      </h1>
-
-      <p>
-        ค้นหาฟอนต์ที่ใช่สำหรับงานของคุณ
-        ทดลองพิมพ์ เปรียบเทียบ และเลือกสิทธิ์การใช้งาน
-        ได้ในที่เดียว
-      </p>
-
-    </section>
-
-
-    <!-- =====================================================
-         SEARCH + FILTER
-    ====================================================== -->
-
-    <section class="tools">
-
-      <div class="search-box">
-
-        <span class="search-icon">
-          ⌕
-        </span>
-
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="ค้นหาชื่อฟอนต์..."
-        >
-
-      </div>
-
-
-      <div class="filter-row">
-
-        <div class="filters">
-
-          <button
-            class="filter-btn active"
-            data-filter="all"
-          >
-            ทั้งหมด
-          </button>
-
-          <button
-            class="filter-btn"
-            data-filter="separate"
-          >
-            แยกสิทธิ์
-          </button>
-
-          <button
-            class="filter-btn"
-            data-filter="single"
-          >
-            ราคาเดียว
-          </button>
-
-        </div>
-
-
-        <div
-          class="font-count"
-          id="fontCount"
-        >
-          กำลังโหลด...
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         FONT CARDS
-    ====================================================== -->
-
-    <section
-      class="font-section"
-      id="fonts"
-    >
-
-      <div
-        class="font-grid"
-        id="fontGrid"
-      >
-
-        <div class="loading">
-
-          ✦ กำลังโหลดฟอนต์...
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-  <!-- =======================================================
-       FOOTER
-  ======================================================== -->
-
-  <footer>
-
-    <strong>
-      THBR Font Studio ♡
-    </strong>
-
-    <p>
-      Beautiful fonts for beautiful ideas.
-    </p>
-
-  </footer>
-
-
-
-  <!-- =======================================================
-       VS MODAL
-  ======================================================== -->
-
-  <div
-    class="vs-modal"
-    id="vsModal"
-  >
-
-    <div class="vs-window">
-
-      <div class="modal-header">
-
-        <h2>
-          ⚡ VS Mode
-        </h2>
+    <div class="header-actions">
 
         <button
-          class="modal-close"
-          onclick="closeVSMode()"
-        >
-          ×
+            class="icon-btn"
+            onclick="showPage('profile')"
+            title="โปรไฟล์">
+            👤
         </button>
 
-      </div>
-
-
-      <div class="vs-selectors">
-
-        <select id="vsFontA">
-          <option value="">
-            เลือกฟอนต์ A
-          </option>
-        </select>
-
-        <select id="vsFontB">
-          <option value="">
-            เลือกฟอนต์ B
-          </option>
-        </select>
-
-      </div>
-
-
-      <input
-        class="vs-input"
-        id="vsInput"
-        value="สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์"
-        placeholder="พิมพ์ข้อความเพื่อเปรียบเทียบ..."
-      >
-
-
-      <div class="vs-stage">
-
-        <div class="vs-panel">
-
-          <h3 id="vsNameA">
-            Font A
-          </h3>
-
-          <div
-            class="vs-text"
-            id="vsTextA"
-          >
-            สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์
-          </div>
-
-        </div>
-
-
-        <div class="vs-panel">
-
-          <h3 id="vsNameB">
-            Font B
-          </h3>
-
-          <div
-            class="vs-text"
-            id="vsTextB"
-          >
-            สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์
-          </div>
-
-        </div>
-
-      </div>
+        <button
+            class="icon-btn"
+            onclick="showPage('profile')"
+            title="เข้าสู่ระบบ">
+            ♡
+        </button>
 
     </div>
 
-  </div>
+</header>
 
 
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
-  <!-- =======================================================
-       BUY MODAL
-  ======================================================== -->
+<aside id="sidebar" class="sidebar">
 
-  <div
-    class="buy-modal"
-    id="buyModal"
-  >
+    <div class="sidebar-title">
+        MENU
+    </div>
 
-    <div class="buy-window">
+    <button
+        class="menu-item active"
+        onclick="showPage('home')">
 
-      <div class="modal-header">
+        <span class="menu-icon">🏠</span>
+
+        <span>แคตตาล็อกฟอนต์ทั้งหมด</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('vs')">
+
+        <span class="menu-icon">⚡</span>
+
+        <span>VS Mode</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('orders')">
+
+        <span class="menu-icon">🧾</span>
+
+        <span>ประวัติสั่งซื้อ & ใบเสร็จ / ไดรฟ์</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('other-fonts')">
+
+        <span class="menu-icon">🛒</span>
+
+        <span>สั่งซื้อฟอนต์เครืออื่นๆ</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('dealer')">
+
+        <span class="menu-icon">✨</span>
+
+        <span>ตัวแทนจำหน่ายอย่างถูกต้อง</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('license')">
+
+        <span class="menu-icon">📜</span>
+
+        <span>เงื่อนไข & ประเภทการใช้งาน</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('copyright')">
+
+        <span class="menu-icon">©️</span>
+
+        <span>กฎและข้อห้ามลิขสิทธิ์</span>
+
+    </button>
+
+    <div class="sidebar-title">
+        ACCOUNT
+    </div>
+
+    <button
+        class="menu-item"
+        onclick="showPage('profile')">
+
+        <span class="menu-icon">👤</span>
+
+        <span>โปรไฟล์ของฉัน</span>
+
+    </button>
+
+    <button
+        class="menu-item"
+        onclick="showPage('admin')">
+
+        <span class="menu-icon">🔐</span>
+
+        <span>ระบบหลังบ้าน (แอดมิน)</span>
+
+    </button>
+
+</aside>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main id="main" class="main">
+
+
+<!-- =====================================================
+     HOME
+===================================================== -->
+
+<section id="page-home" class="page active">
+
+    <div class="hero">
+
+        <h1>
+            Find your
+            <span>perfect font.</span>
+        </h1>
+
+        <p>
+            รวมฟอนต์น่ารัก ฟอนต์ไทย และฟอนต์สำหรับงานออกแบบ
+            ทดลองพิมพ์ก่อนซื้อ และเลือกสิทธิ์การใช้งานที่เหมาะกับคุณ
+        </p>
+
+        <button
+            class="hero-btn"
+            onclick="document.getElementById('fontSection').scrollIntoView()">
+
+            ✦ เลือกดูฟอนต์
+
+        </button>
+
+    </div>
+
+
+    <div id="fontSection">
+
+        <div class="toolbar">
+
+            <h2>Font Catalog</h2>
+
+            <div class="filters">
+
+                <button
+                    class="filter-btn active"
+                    onclick="filterPrice('all',this)">
+                    ทั้งหมด
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterPrice('separate',this)">
+                    แยกสิทธิ์
+                </button>
+
+                <button
+                    class="filter-btn"
+                    onclick="filterPrice('single',this)">
+                    ราคาเดียว
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div id="fontGrid" class="font-grid"></div>
+
+    </div>
+
+
+    <!-- INTERACTIVE TESTER -->
+
+    <div class="tester">
+
+        <div class="tester-header">
+
+            <div>
+
+                <h2>✍️ Interactive Text Tester</h2>
+
+                <p style="color:#96858c;font-size:13px">
+                    พิมพ์ข้อความเพื่อทดลองฟอนต์แบบสด ๆ
+                </p>
+
+            </div>
+
+            <div class="tester-controls">
+
+                <select id="testerFont"
+                    onchange="updateTester()">
+                </select>
+
+                <select id="testerWeight"
+                    onchange="updateTester()">
+
+                    <option value="400">ปกติ</option>
+                    <option value="700">หนา</option>
+                    <option value="300">บาง</option>
+
+                </select>
+
+                <input
+                    id="testerSize"
+                    type="number"
+                    min="10"
+                    max="150"
+                    value="42"
+                    onchange="updateTester()"
+                >
+
+            </div>
+
+        </div>
+
+        <textarea
+            id="testerText"
+            class="live-text"
+            oninput="updateTester()"
+        >สวัสดี PLENG FONT ♡</textarea>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     VS MODE
+===================================================== -->
+
+<section id="page-vs" class="page">
+
+    <div class="toolbar">
 
         <div>
 
-          <h2>
-            ♡ สั่งซื้อฟอนต์
-          </h2>
+            <h2>⚡ VS Mode</h2>
 
-          <p
-            id="buyFontName"
-            style="
-              color:#9a8290;
-              font-size:13px;
-              margin-top:4px;
-            "
-          ></p>
+            <p style="color:#96858c">
+                เปรียบเทียบฟอนต์ 2 แบบในหน้าจอเดียว
+            </p>
 
         </div>
-
-        <button
-          class="modal-close"
-          onclick="closeBuyModal()"
-        >
-          ×
-        </button>
-
-      </div>
-
-
-      <div class="license-list">
-
-
-        <div
-          class="license-option"
-          data-license="Personal"
-          onclick="selectLicense(this)"
-        >
-
-          <strong>
-            Personal
-
-            <span class="license-price">
-              ฿299
-            </span>
-
-          </strong>
-
-          <span>
-            สำหรับใช้ส่วนตัว / งานส่วนบุคคล
-          </span>
-
-        </div>
-
-
-        <div
-          class="license-option"
-          data-license="Commercial"
-          onclick="selectLicense(this)"
-        >
-
-          <strong>
-            Commercial
-
-            <span class="license-price">
-              ฿699
-            </span>
-
-          </strong>
-
-          <span>
-            สำหรับงานเชิงพาณิชย์
-          </span>
-
-        </div>
-
-
-        <div
-          class="license-option"
-          data-license="Business"
-          onclick="selectLicense(this)"
-        >
-
-          <strong>
-            Business
-
-            <span class="license-price">
-              ฿1,499
-            </span>
-
-          </strong>
-
-          <span>
-            สำหรับธุรกิจ / บริษัท / แบรนด์
-          </span>
-
-        </div>
-
-
-      </div>
-
-
-      <button
-        class="line-order-btn"
-        onclick="orderViaLINE()"
-      >
-        💬 สั่งซื้อผ่าน LINE OA
-      </button>
 
     </div>
 
-  </div>
+
+    <input
+        id="vsInput"
+        class="vs-input"
+        value="สวัสดีค่ะ ♡ ทดลองเปรียบเทียบฟอนต์"
+        oninput="updateVS()"
+    >
 
 
+    <div class="vs-grid" style="margin-top:20px">
 
-  <!-- =======================================================
-       SUPABASE
-  ======================================================== -->
+        <div class="vs-box">
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            <select
+                id="vsFont1"
+                onchange="updateVS()">
+            </select>
 
+            <div
+                id="vsText1"
+                class="vs-text">
+                สวัสดีค่ะ ♡
+            </div>
 
-  <script>
-
-    /* =========================================================
-       SUPABASE CONFIG
-    =========================================================
-
-       เปลี่ยน 2 ค่านี้เป็นของ Supabase Project ของคุณ
-
-    ========================================================= */
-
-    const SUPABASE_URL =
-      "YOUR_SUPABASE_URL";
-
-    const SUPABASE_ANON_KEY =
-      "YOUR_SUPABASE_ANON_KEY";
+        </div>
 
 
-    let supabaseClient = null;
+        <div class="vs-box">
+
+            <select
+                id="vsFont2"
+                onchange="updateVS()">
+            </select>
+
+            <div
+                id="vsText2"
+                class="vs-text">
+                สวัสดีค่ะ ♡
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    if (
-      SUPABASE_URL !== "YOUR_SUPABASE_URL" &&
-      SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY"
-    ) {
+<!-- =====================================================
+     PROFILE
+===================================================== -->
 
-      supabaseClient =
-        window.supabase.createClient(
-          SUPABASE_URL,
-          SUPABASE_ANON_KEY
-        );
+<section id="page-profile" class="page">
+
+    <div class="profile-box">
+
+        <div id="loginBox" class="login-box">
+
+            <div class="avatar" style="margin:0 auto 15px">
+                👤
+            </div>
+
+            <h2>เข้าสู่ระบบ</h2>
+
+            <p style="color:#96858c;margin-top:8px">
+                เข้าสู่ระบบเพื่อดูประวัติการซื้อ
+                และฟอนต์ของคุณ
+            </p>
+
+            <button
+                class="google-btn"
+                onclick="loginGoogle()">
+
+                🇬 Google
+                &nbsp; เข้าสู่ระบบด้วย Gmail
+
+            </button>
+
+        </div>
+
+
+        <div
+            id="profileContent"
+            style="display:none">
+
+            <div class="profile-card">
+
+                <div class="avatar">
+                    👩🏻
+                </div>
+
+                <h2 id="profileName">
+                    Pleng
+                </h2>
+
+                <p id="profileEmail"
+                    style="color:#96858c">
+                    example@gmail.com
+                </p>
+
+                <button
+                    class="btn"
+                    onclick="logout()"
+                    style="margin-top:15px">
+
+                    ออกจากระบบ
+
+                </button>
+
+            </div>
+
+
+            <div class="profile-card">
+
+                <h2>🧾 ประวัติคำสั่งซื้อ</h2>
+
+                <div id="profileOrders"></div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ORDERS
+===================================================== -->
+
+<section id="page-orders" class="page">
+
+    <div class="content-box">
+
+        <h2>🧾 ประวัติสั่งซื้อ & ใบเสร็จ / ไดรฟ์</h2>
+
+        <p>
+            ฟอนต์ที่ซื้อสำเร็จจะแสดงในคลังของคุณ
+            โดยลิงก์ดาวน์โหลดจะเปิดให้เห็นเฉพาะ
+            ออเดอร์ที่แอดมินอนุมัติแล้วเท่านั้น
+        </p>
+
+        <div id="ordersList" style="margin-top:25px"></div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     OTHER FONTS
+===================================================== -->
+
+<section id="page-other-fonts" class="page">
+
+    <div class="content-box">
+
+        <h2>🛒 สั่งซื้อฟอนต์เครืออื่น ๆ</h2>
+
+        <p>
+            หน้านี้สำหรับฟอนต์จากผู้สร้างหรือเครืออื่น
+            ที่ร้านมีสิทธิ์เป็นตัวแทนจำหน่ายอย่างถูกต้อง
+        </p>
+
+        <button
+            class="btn btn-primary"
+            style="margin-top:20px"
+            onclick="openLine('ต้องการสอบถามฟอนต์เครืออื่น')">
+
+            💬 สอบถามผ่าน LINE OA
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     DEALER
+===================================================== -->
+
+<section id="page-dealer" class="page">
+
+    <div class="content-box">
+
+        <h2>✨ ตัวแทนจำหน่ายอย่างถูกต้อง</h2>
+
+        <p>
+            ฟอนต์ที่จำหน่ายผ่านร้านจะต้องได้รับสิทธิ์
+            ในการจำหน่ายจากเจ้าของฟอนต์หรือผู้ถือลิขสิทธิ์
+        </p>
+
+        <h3>ทำไมควรซื้อจากตัวแทนที่ถูกต้อง?</h3>
+
+        <p>
+            เพื่อให้ผู้ซื้อได้รับสิทธิ์การใช้งานที่ชัดเจน
+            และได้รับไฟล์หรือช่องทางดาวน์โหลดตามเงื่อนไข
+            ของเจ้าของลิขสิทธิ์
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     LICENSE
+===================================================== -->
+
+<section id="page-license" class="page">
+
+    <div class="content-box">
+
+        <h2>📜 เงื่อนไข & ประเภทการใช้งาน</h2>
+
+        <h3>Personal</h3>
+
+        <p>
+            สำหรับการใช้งานส่วนตัวหรือผลงานที่ไม่ได้สร้าง
+            เพื่อกิจกรรมเชิงพาณิชย์ตามเงื่อนไขของฟอนต์
+        </p>
+
+        <h3>Commercial</h3>
+
+        <p>
+            สำหรับการใช้งานที่เกี่ยวข้องกับการขายสินค้า
+            การตลาด หรือการสร้างรายได้ตามขอบเขตสิทธิ์
+        </p>
+
+        <h3>Business</h3>
+
+        <p>
+            สำหรับองค์กร บริษัท หรือการใช้งานในระดับธุรกิจ
+            ตามรายละเอียดใบอนุญาตที่กำหนด
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     COPYRIGHT
+===================================================== -->
+
+<section id="page-copyright" class="page">
+
+    <div class="content-box">
+
+        <h2>©️ กฎและข้อห้ามลิขสิทธิ์</h2>
+
+        <h3>ห้ามแจกไฟล์ฟอนต์</h3>
+
+        <p>
+            ผู้ซื้อไม่สามารถนำไฟล์ฟอนต์ไปแจกจ่าย
+            อัปโหลด หรือส่งต่อให้บุคคลอื่น
+            หากไม่ได้รับอนุญาต
+        </p>
+
+        <h3>ห้ามขายไฟล์ฟอนต์ต่อ</h3>
+
+        <p>
+            การซื้อ License ไม่ได้หมายความว่า
+            ผู้ซื้อได้รับกรรมสิทธิ์ในตัวฟอนต์
+        </p>
+
+        <h3>ห้ามนำไปแก้ไขเพื่อจำหน่ายต่อ</h3>
+
+        <p>
+            การดัดแปลงหรือสร้างฟอนต์ต่อยอด
+            ต้องตรวจสอบเงื่อนไขของเจ้าของลิขสิทธิ์ก่อน
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ADMIN
+===================================================== -->
+
+<section id="page-admin" class="page">
+
+    <div id="adminLogin">
+
+        <div class="login-box">
+
+            <div class="avatar" style="margin:0 auto 15px">
+                🔐
+            </div>
+
+            <h2>Admin Login</h2>
+
+            <p style="color:#96858c;margin-top:8px">
+                ระบบหลังบ้าน
+            </p>
+
+            <input
+                id="adminEmail"
+                type="text"
+                placeholder="Admin email"
+                style="
+                width:100%;
+                margin-top:20px;
+                padding:13px;
+                border:1px solid #f0dce4;
+                border-radius:12px;
+                "
+            >
+
+            <input
+                id="adminPassword"
+                type="password"
+                placeholder="Password"
+                style="
+                width:100%;
+                margin-top:10px;
+                padding:13px;
+                border:1px solid #f0dce4;
+                border-radius:12px;
+                "
+            >
+
+            <button
+                class="btn btn-primary"
+                style="width:100%;margin-top:15px"
+                onclick="adminLogin()">
+
+                เข้าสู่ระบบ Admin
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <div
+        id="adminPanel"
+        style="display:none">
+
+        <div class="toolbar">
+
+            <div>
+
+                <h2>🔐 Admin Dashboard</h2>
+
+                <p style="color:#96858c">
+                    จัดการฟอนต์และคำสั่งซื้อ
+                </p>
+
+            </div>
+
+            <button
+                class="btn"
+                onclick="showPage('home')">
+
+                ← กลับหน้าร้าน
+
+            </button>
+
+        </div>
+
+
+        <div class="admin-grid">
+
+            <div class="admin-stat">
+
+                Fonts
+
+                <strong id="statFonts">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="admin-stat">
+
+                Orders
+
+                <strong id="statOrders">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="admin-stat">
+
+                Pending
+
+                <strong id="statPending">
+                    0
+                </strong>
+
+            </div>
+
+            <div class="admin-stat">
+
+                Approved
+
+                <strong id="statApproved">
+                    0
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- ADD FONT -->
+
+        <div class="form-card">
+
+            <h2>➕ เพิ่ม / แก้ไขฟอนต์</h2>
+
+            <div class="form-grid"
+                style="margin-top:20px">
+
+                <div class="field">
+
+                    <label>ชื่อฟอนต์</label>
+
+                    <input
+                        id="fontName"
+                        placeholder="เช่น BRFonphrom">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>หมวดหมู่</label>
+
+                    <input
+                        id="fontCategory"
+                        placeholder="Thai / Handwriting / Display">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>ราคา Personal</label>
+
+                    <input
+                        id="personalPrice"
+                        type="number"
+                        placeholder="0">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>ราคา Commercial</label>
+
+                    <input
+                        id="commercialPrice"
+                        type="number"
+                        placeholder="0">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>ราคา Business</label>
+
+                    <input
+                        id="businessPrice"
+                        type="number"
+                        placeholder="0">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>ไฟล์ TTF / OTF</label>
+
+                    <input
+                        id="fontFile"
+                        type="file"
+                        accept=".ttf,.otf"
+                        multiple>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Google Drive — Personal</label>
+
+                    <input
+                        id="personalDrive"
+                        placeholder="https://drive.google.com/...">
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>Google Drive — Commercial</label>
+
+                    <input
+                        id="commercialDrive"
+                        placeholder="https://drive.google.com/...">
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>Google Drive — Business</label>
+
+                    <input
+                        id="businessDrive"
+                        placeholder="https://drive.google.com/...">
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label>รายละเอียด</label>
+
+                    <textarea
+                        id="fontDescription"
+                        placeholder="รายละเอียดฟอนต์"></textarea>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="btn btn-primary"
+                style="margin-top:20px"
+                onclick="saveFont()">
+
+                💾 บันทึกฟอนต์
+
+            </button>
+
+        </div>
+
+
+        <!-- ORDERS -->
+
+        <div class="form-card">
+
+            <div class="toolbar">
+
+                <h2>🧾 Orders Approval</h2>
+
+                <button
+                    class="btn"
+                    onclick="loadOrders()">
+
+                    ↻ Refresh
+
+                </button>
+
+            </div>
+
+
+            <div class="admin-orders">
+
+                <table class="admin-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Order</th>
+                            <th>Customer</th>
+                            <th>Font</th>
+                            <th>License</th>
+                            <th>Slip</th>
+                            <th>Status</th>
+                            <th>Action</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="adminOrders"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =====================================================
+     ORDER MODAL
+===================================================== -->
+
+<div
+    id="orderModal"
+    class="modal">
+
+    <div class="modal-card">
+
+        <button
+            class="close"
+            onclick="closeModal()">
+
+            ×
+
+        </button>
+
+        <h2>
+            🛒 สั่งซื้อฟอนต์
+        </h2>
+
+        <p
+            id="modalFontName"
+            style="
+            color:#96858c;
+            margin-top:5px;
+            ">
+        </p>
+
+
+        <div style="margin-top:25px">
+
+            <label
+                style="
+                font-size:13px;
+                font-weight:800;
+                ">
+                ประเภท License
+            </label>
+
+            <select
+                id="licenseType"
+                onchange="updateModalPrice()"
+                style="
+                width:100%;
+                margin-top:7px;
+                padding:12px;
+                border:1px solid #f0dce4;
+                border-radius:12px;
+                ">
+
+                <option value="Personal">
+                    Personal
+                </option>
+
+                <option value="Commercial">
+                    Commercial
+                </option>
+
+                <option value="Business">
+                    Business
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div
+            style="
+            margin-top:20px;
+            padding:20px;
+            background:#fff4f7;
+            border-radius:15px;
+            ">
+
+            ราคา
+
+            <strong
+                id="modalPrice"
+                style="
+                float:right;
+                color:#ed5687;
+                ">
+
+                ฿0
+
+            </strong>
+
+        </div>
+
+
+        <button
+            class="btn btn-primary"
+            style="
+            width:100%;
+            margin-top:20px;
+            "
+            onclick="orderViaLine()">
+
+            💬 สั่งซื้อผ่าน LINE OA
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     TOAST
+===================================================== -->
+
+<div
+    id="toast"
+    class="toast">
+</div>
+
+
+<script>
+
+/* =====================================================
+   DEMO FONT DATA
+
+   เปลี่ยนส่วนนี้เป็น Supabase ได้
+===================================================== */
+
+const fonts = [
+
+    {
+        id: 1,
+        name: "BR Fonphrom",
+        category: "Thai",
+        description: "ฟอนต์ไทยน่ารักสำหรับงานออกแบบ",
+        priceMode: "separate",
+        personal: 150,
+        commercial: 450,
+        business: 900,
+        family: "BRFonphrom"
+    },
+
+    {
+        id: 2,
+        name: "Pleng Hand",
+        category: "Handwriting",
+        description: "ฟอนต์ลายมือสำหรับงานน่ารัก",
+        priceMode: "single",
+        personal: 250,
+        commercial: 250,
+        business: 250,
+        family: "PlengHand"
+    },
+
+    {
+        id: 3,
+        name: "Sweet Note",
+        category: "Display",
+        description: "ฟอนต์สำหรับโปสเตอร์และ Social Media",
+        priceMode: "separate",
+        personal: 180,
+        commercial: 500,
+        business: 1000,
+        family: "SweetNote"
+    },
+
+    {
+        id: 4,
+        name: "Mochi",
+        category: "Cute",
+        description: "ฟอนต์กลม ๆ น่ารัก",
+        priceMode: "single",
+        personal: 300,
+        commercial: 300,
+        business: 300,
+        family: "Mochi"
+    }
+
+];
+
+
+/* =====================================================
+   ORDERS DEMO
+===================================================== */
+
+let orders = [
+
+    {
+        id: "ORD-0001",
+        customer: "demo@gmail.com",
+        font: "BR Fonphrom",
+        license: "Commercial",
+        price: 450,
+        status: "approved",
+        drive:
+            "https://drive.google.com/"
+    },
+
+    {
+        id: "ORD-0002",
+        customer: "demo@gmail.com",
+        font: "Sweet Note",
+        license: "Personal",
+        price: 180,
+        status: "pending",
+        drive: ""
+    }
+
+];
+
+
+/* =====================================================
+   GLOBAL
+===================================================== */
+
+let currentFilter = "all";
+
+let selectedFont = null;
+
+let loggedIn = false;
+
+let adminLoggedIn = false;
+
+
+/* =====================================================
+   SIDEBAR
+===================================================== */
+
+function toggleSidebar() {
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("closed");
+
+}
+
+
+/* =====================================================
+   PAGE NAVIGATION
+===================================================== */
+
+function showPage(page) {
+
+    document
+        .querySelectorAll(".page")
+        .forEach(p => {
+
+            p.classList.remove("active");
+
+        });
+
+
+    const target =
+        document.getElementById("page-" + page);
+
+
+    if (target) {
+
+        target.classList.add("active");
 
     }
 
 
-    /* =========================================================
-       LINE OA
-    =========================================================
+    document
+        .querySelectorAll(".menu-item")
+        .forEach(btn => {
 
-       เปลี่ยนเป็น LINE OA ของคุณ
+            btn.classList.remove("active");
 
-    ========================================================= */
-
-    const LINE_OA_URL =
-      "https://line.me/R/ti/p/@YOUR_LINE_ID";
+        });
 
 
-    /* =========================================================
-       VARIABLES
-    ========================================================= */
-
-    let fonts = [];
-
-    let currentFilter = "all";
-
-    let selectedFont = null;
-
-    let selectedLicense = null;
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
 
-    /* =========================================================
-       DEMO DATA
-    =========================================================
+    if (page === "orders") {
 
-       ถ้ายังไม่ได้ต่อ Supabase
-       เว็บจะใช้ข้อมูลตัวอย่างแทน
+        renderOrders();
 
-    ========================================================= */
-
-    const demoFonts = [
-
-      {
-        id: 1,
-
-        name: "BR Fonphrom",
-
-        category: "Thai",
-
-        filter_type: "separate",
-
-        price: 299,
-
-        regular_url: "",
-
-        bold_url: "",
-
-        thin_url: "",
-
-        preview:
-          "สวัสดีค่ะ Font ที่น่ารักสำหรับงานของคุณ"
-      },
+    }
 
 
-      {
-        id: 2,
+    if (page === "profile") {
 
-        name: "BR Minimal",
+        updateProfile();
 
-        category: "Modern",
+    }
 
-        filter_type: "single",
-
-        price: 590,
-
-        regular_url: "",
-
-        bold_url: "",
-
-        thin_url: "",
-
-        preview:
-          "Minimal type for modern design"
-      },
+}
 
 
-      {
-        id: 3,
+/* =====================================================
+   RENDER FONTS
+===================================================== */
 
-        name: "BR Sweet",
+function renderFonts(list = fonts) {
 
-        category: "Cute",
+    const grid =
+        document.getElementById("fontGrid");
 
-        filter_type: "separate",
 
-        price: 399,
+    grid.innerHTML = "";
 
-        regular_url: "",
 
-        bold_url: "",
+    if (!list.length) {
 
-        thin_url: "",
+        grid.innerHTML = `
+            <div style="
+                grid-column:1/-1;
+                padding:50px;
+                text-align:center;
+                color:#96858c;
+            ">
+                ไม่พบฟอนต์ที่ค้นหา
+            </div>
+        `;
 
-        preview:
-          "ฟอนต์หวานๆ สำหรับงานน่ารัก"
-      }
+        return;
+
+    }
+
+
+    list.forEach(font => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "font-card";
+
+
+        card.innerHTML = `
+
+            <div class="font-preview">
+
+                <div class="font-name">
+                    ${font.name}
+                </div>
+
+                <div
+                    class="preview-text"
+                    style="font-family:'${font.family}'">
+
+                    Aa กขค
+
+                </div>
+
+                <div style="
+                    font-size:12px;
+                    color:#96858c;
+                ">
+                    ${font.category}
+                </div>
+
+            </div>
+
+
+            <div class="font-info">
+
+                <h3>
+                    ${font.name}
+                </h3>
+
+                <div class="font-description">
+                    ${font.description}
+                </div>
+
+                <div class="price-row">
+
+                    <span class="price">
+
+                        ${
+                            font.priceMode === "single"
+
+                            ? "฿" + font.personal
+
+                            : "เริ่ม ฿" + font.personal
+
+                        }
+
+                    </span>
+
+                    <span
+                        style="
+                        font-size:12px;
+                        color:#96858c;
+                        ">
+
+                        ${
+                            font.priceMode === "single"
+                            ? "ราคาเดียว"
+                            : "แยกสิทธิ์"
+                        }
+
+                    </span>
+
+                </div>
+
+
+                <div class="card-actions">
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="openOrder(${font.id})">
+
+                        🛒 สั่งซื้อ
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-purple"
+                        onclick="selectTester(${font.id})">
+
+                        ✍️ ทดลอง
+
+                    </button>
+
+                    <button
+                        class="btn"
+                        onclick="selectVS(${font.id})">
+
+                        VS
+
+                    </button>
+
+                </div>
+
+            </div>
+        `;
+
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+/* =====================================================
+   FILTER
+===================================================== */
+
+function filterPrice(type, button) {
+
+    currentFilter = type;
+
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn => {
+
+            btn.classList.remove("active");
+
+        });
+
+
+    button.classList.add("active");
+
+
+    let result = fonts;
+
+
+    if (type !== "all") {
+
+        result =
+            fonts.filter(
+                font =>
+                    font.priceMode === type
+            );
+
+    }
+
+
+    renderFonts(result);
+
+}
+
+
+/* =====================================================
+   SEARCH
+===================================================== */
+
+function searchFonts(value) {
+
+    const keyword =
+        value.trim().toLowerCase();
+
+
+    let result =
+        fonts.filter(font => {
+
+            return (
+                font.name
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                font.category
+                    .toLowerCase()
+                    .includes(keyword)
+
+                ||
+
+                font.description
+                    .toLowerCase()
+                    .includes(keyword)
+            );
+
+        });
+
+
+    if (currentFilter !== "all") {
+
+        result =
+            result.filter(
+                font =>
+                    font.priceMode === currentFilter
+            );
+
+    }
+
+
+    renderFonts(result);
+
+}
+
+
+/* =====================================================
+   TESTER
+===================================================== */
+
+function setupFontSelects() {
+
+    const selects = [
+
+        document.getElementById("testerFont"),
+        document.getElementById("vsFont1"),
+        document.getElementById("vsFont2")
 
     ];
 
 
-    /* =========================================================
-       LOAD FONTS
-    ========================================================= */
+    selects.forEach(select => {
 
-    async function loadFonts() {
+        select.innerHTML = "";
 
-      if (!supabaseClient) {
+        fonts.forEach(font => {
 
-        fonts = demoFonts;
+            const option =
+                document.createElement("option");
 
-        renderFonts();
+            option.value = font.id;
 
-        return;
+            option.textContent =
+                font.name;
 
-      }
-
-
-      try {
-
-        const {
-          data,
-          error
-        } = await supabaseClient
-
-          .from("fonts")
-
-          .select("*")
-
-          .order("created_at", {
-            ascending: false
-          });
-
-
-        if (error) {
-
-          console.error(error);
-
-          fonts = demoFonts;
-
-          renderFonts();
-
-          return;
-
-        }
-
-
-        fonts = data || [];
-
-        renderFonts();
-
-
-      } catch (error) {
-
-        console.error(error);
-
-        fonts = demoFonts;
-
-        renderFonts();
-
-      }
-
-    }
-
-
-    /* =========================================================
-       FILTER FONTS
-    ========================================================= */
-
-    function getFilteredFonts() {
-
-      const search =
-        document
-          .getElementById("searchInput")
-          .value
-          .trim()
-          .toLowerCase();
-
-
-      return fonts.filter(font => {
-
-        const matchesSearch =
-          !search ||
-          String(font.name || "")
-            .toLowerCase()
-            .includes(search);
-
-
-        let matchesFilter = true;
-
-
-        if (currentFilter === "separate") {
-
-          matchesFilter =
-            font.filter_type === "separate";
-
-        }
-
-
-        if (currentFilter === "single") {
-
-          matchesFilter =
-            font.filter_type === "single";
-
-        }
-
-
-        return (
-          matchesSearch &&
-          matchesFilter
-        );
-
-      });
-
-    }
-
-
-    /* =========================================================
-       RENDER FONT CARDS
-    ========================================================= */
-
-    function renderFonts() {
-
-      const grid =
-        document.getElementById("fontGrid");
-
-      const filtered =
-        getFilteredFonts();
-
-
-      document.getElementById("fontCount")
-        .textContent =
-        `${filtered.length} ฟอนต์`;
-
-
-      if (!filtered.length) {
-
-        grid.innerHTML = `
-
-          <div class="empty">
-
-            🔎 ไม่พบฟอนต์ที่ค้นหา
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      grid.innerHTML =
-        filtered
-          .map(font => createFontCard(font))
-          .join("");
-
-
-      setupFontControls();
-
-    }
-
-
-    /* =========================================================
-       CREATE FONT CARD
-    ========================================================= */
-
-    function createFontCard(font) {
-
-      const id =
-        String(font.id);
-
-
-      const price =
-        Number(font.price || 0);
-
-
-      const preview =
-        font.preview ||
-        "ทดลองพิมพ์ข้อความของคุณ";
-
-
-      const category =
-        font.category ||
-        "Font";
-
-
-      return `
-
-        <article
-          class="font-card"
-          data-font-id="${escapeHTML(id)}"
-        >
-
-
-          <div class="font-card-top">
-
-            <div class="font-name">
-
-              ${escapeHTML(
-                font.name || "Unnamed Font"
-              )}
-
-            </div>
-
-
-            <div class="font-category">
-
-              ${escapeHTML(category)}
-
-            </div>
-
-          </div>
-
-
-          <div class="font-preview">
-
-            <div
-              class="preview-text"
-              contenteditable="true"
-              spellcheck="false"
-              data-default="${escapeHTML(preview)}"
-            >
-
-              ${escapeHTML(preview)}
-
-            </div>
-
-          </div>
-
-
-          <div class="tester">
-
-
-            <input
-              class="tester-input"
-              type="text"
-              value="${escapeHTML(preview)}"
-              placeholder="ลองพิมพ์ข้อความ..."
-            >
-
-
-            <div class="size-control">
-
-              <button
-                class="size-minus"
-                type="button"
-              >
-                −
-              </button>
-
-              <button
-                class="size-plus"
-                type="button"
-              >
-                +
-              </button>
-
-            </div>
-
-
-          </div>
-
-
-          <div class="weight-row">
-
-
-            <button
-              class="weight-btn active"
-              data-weight="400"
-              type="button"
-            >
-              ปกติ
-            </button>
-
-
-            <button
-              class="weight-btn"
-              data-weight="700"
-              type="button"
-            >
-              หนา
-            </button>
-
-
-            <button
-              class="weight-btn"
-              data-weight="300"
-              type="button"
-            >
-              บาง
-            </button>
-
-
-          </div>
-
-
-          <div class="font-bottom">
-
-
-            <div class="price">
-
-              ฿${price.toLocaleString()}
-
-              <small>
-                ราคาเริ่มต้น
-              </small>
-
-            </div>
-
-
-            <div class="card-actions">
-
-
-              <button
-                class="action-btn vs-btn"
-                type="button"
-                onclick="addToVS('${escapeJS(id)}')"
-              >
-                ⚡ VS
-              </button>
-
-
-              <button
-                class="action-btn buy-btn"
-                type="button"
-                onclick="openBuyModal('${escapeJS(id)}')"
-              >
-                ซื้อฟอนต์
-              </button>
-
-
-            </div>
-
-          </div>
-
-
-        </article>
-
-      `;
-
-    }
-
-
-    /* =========================================================
-       FONT CARD CONTROLS
-    ========================================================= */
-
-    function setupFontControls() {
-
-      document
-        .querySelectorAll(".font-card")
-        .forEach(card => {
-
-
-          const input =
-            card.querySelector(".tester-input");
-
-
-          const preview =
-            card.querySelector(".preview-text");
-
-
-          const plus =
-            card.querySelector(".size-plus");
-
-
-          const minus =
-            card.querySelector(".size-minus");
-
-
-          const weightButtons =
-            card.querySelectorAll(".weight-btn");
-
-
-          let size = 38;
-
-
-          input.addEventListener(
-            "input",
-            () => {
-
-              preview.textContent =
-                input.value ||
-                "ทดลองพิมพ์ข้อความ";
-
-            }
-          );
-
-
-          preview.addEventListener(
-            "input",
-            () => {
-
-              input.value =
-                preview.textContent;
-
-            }
-          );
-
-
-          plus.addEventListener(
-            "click",
-            () => {
-
-              size =
-                Math.min(size + 2, 120);
-
-              preview.style.fontSize =
-                size + "px";
-
-            }
-          );
-
-
-          minus.addEventListener(
-            "click",
-            () => {
-
-              size =
-                Math.max(size - 2, 12);
-
-              preview.style.fontSize =
-                size + "px";
-
-            }
-          );
-
-
-          weightButtons.forEach(btn => {
-
-            btn.addEventListener(
-              "click",
-              () => {
-
-                weightButtons
-                  .forEach(b =>
-                    b.classList.remove(
-                      "active"
-                    )
-                  );
-
-
-                btn.classList.add(
-                  "active"
-                );
-
-
-                preview.style.fontWeight =
-                  btn.dataset.weight;
-
-              }
-            );
-
-          });
-
-
-          applyFontFace(
-            card,
-            card.dataset.fontId
-          );
+            select.appendChild(option);
 
         });
 
-    }
+    });
 
 
-    /* =========================================================
-       APPLY FONT
-    ========================================================= */
+    if (fonts.length > 1) {
 
-    function applyFontFace(
-      card,
-      fontId
-    ) {
-
-      const font =
-        fonts.find(
-          f => String(f.id) === String(fontId)
-        );
-
-
-      if (!font) return;
-
-
-      const preview =
-        card.querySelector(".preview-text");
-
-
-      if (
-        font.regular_url
-      ) {
-
-        const family =
-          "Font_" + fontId;
-
-
-        const style =
-          document.createElement("style");
-
-
-        style.textContent = `
-
-          @font-face {
-
-            font-family: "${family}";
-
-            src:
-              url("${font.regular_url}")
-              format("woff2");
-
-            font-weight: 400;
-
-          }
-
-        `;
-
-
-        document.head.appendChild(style);
-
-
-        preview.style.fontFamily =
-          `"${family}", sans-serif`;
-
-      }
+        document.getElementById("vsFont2")
+            .value = fonts[1].id;
 
     }
 
-
-    /* =========================================================
-       SEARCH
-    ========================================================= */
-
-    document
-      .getElementById("searchInput")
-      .addEventListener(
-        "input",
-        renderFonts
-      );
+}
 
 
-    /* =========================================================
-       FILTER BUTTONS
-    ========================================================= */
+function selectTester(id) {
 
-    document
-      .querySelectorAll(".filter-btn")
-      .forEach(button => {
-
-        button.addEventListener(
-          "click",
-          () => {
-
-            document
-              .querySelectorAll(".filter-btn")
-              .forEach(btn =>
-                btn.classList.remove(
-                  "active"
-                )
-              );
+    document.getElementById("testerFont")
+        .value = id;
 
 
-            button.classList.add(
-              "active"
-            );
-
-
-            currentFilter =
-              button.dataset.filter;
-
-
-            renderFonts();
-
-          }
-        );
-
-      });
-
-
-    /* =========================================================
-       SIDEBAR
-    ========================================================= */
-
-    const sidebar =
-      document.getElementById("sidebar");
-
-    const overlay =
-      document.getElementById("overlay");
-
-
-    function openSidebar() {
-
-      sidebar.classList.add("active");
-
-      overlay.classList.add("active");
-
-    }
-
-
-    function closeSidebar() {
-
-      sidebar.classList.remove("active");
-
-      overlay.classList.remove("active");
-
-    }
+    updateTester();
 
 
     document
-      .getElementById("menuBtn")
-      .addEventListener(
-        "click",
-        openSidebar
-      );
+        .querySelector(".tester")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
 
 
-    document
-      .getElementById("closeSidebar")
-      .addEventListener(
-        "click",
-        closeSidebar
-      );
+function updateTester() {
+
+    const id =
+        Number(
+            document.getElementById("testerFont")
+                .value
+        );
 
 
-    overlay.addEventListener(
-      "click",
-      closeSidebar
-    );
+    const font =
+        fonts.find(f => f.id === id);
 
 
-    /* =========================================================
-       VS MODE
-    ========================================================= */
+    const text =
+        document.getElementById("testerText");
 
-    function openVSMode() {
 
-      closeSidebar();
+    const weight =
+        document.getElementById("testerWeight")
+            .value;
 
-      populateVSSelectors();
 
-      document
-        .getElementById("vsModal")
-        .classList.add("active");
+    const size =
+        document.getElementById("testerSize")
+            .value;
 
-      updateVS();
+
+    if (!font) return;
+
+
+    text.style.fontFamily =
+        `"${font.family}"`;
+
+
+    text.style.fontWeight =
+        weight;
+
+
+    text.style.fontSize =
+        size + "px";
+
+}
+
+
+/* =====================================================
+   VS MODE
+===================================================== */
+
+function selectVS(id) {
+
+    document.getElementById("vsFont1")
+        .value = id;
+
+
+    showPage("vs");
+
+    updateVS();
+
+}
+
+
+function updateVS() {
+
+    const id1 =
+        Number(
+            document.getElementById("vsFont1")
+                .value
+        );
+
+
+    const id2 =
+        Number(
+            document.getElementById("vsFont2")
+                .value
+        );
+
+
+    const font1 =
+        fonts.find(f => f.id === id1);
+
+
+    const font2 =
+        fonts.find(f => f.id === id2);
+
+
+    const value =
+        document.getElementById("vsInput")
+            .value;
+
+
+    const text1 =
+        document.getElementById("vsText1");
+
+
+    const text2 =
+        document.getElementById("vsText2");
+
+
+    if (font1) {
+
+        text1.textContent = value;
+
+        text1.style.fontFamily =
+            `"${font1.family}"`;
 
     }
 
 
-    function closeVSMode() {
+    if (font2) {
 
-      document
-        .getElementById("vsModal")
-        .classList.remove("active");
+        text2.textContent = value;
 
-    }
-
-
-    function populateVSSelectors() {
-
-      const selectA =
-        document.getElementById("vsFontA");
-
-      const selectB =
-        document.getElementById("vsFontB");
-
-
-      const options = fonts
-        .map(font => `
-
-          <option value="${escapeHTML(
-            String(font.id)
-          )}">
-
-            ${escapeHTML(
-              font.name || "Font"
-            )}
-
-          </option>
-
-        `)
-        .join("");
-
-
-      selectA.innerHTML =
-        `<option value="">เลือกฟอนต์ A</option>`
-        + options;
-
-
-      selectB.innerHTML =
-        `<option value="">เลือกฟอนต์ B</option>`
-        + options;
-
-
-      if (fonts.length >= 2) {
-
-        selectA.value =
-          String(fonts[0].id);
-
-        selectB.value =
-          String(fonts[1].id);
-
-      }
+        text2.style.fontFamily =
+            `"${font2.family}"`;
 
     }
 
+}
 
-    document
-      .getElementById("vsFontA")
-      .addEventListener(
-        "change",
-        updateVS
-      );
 
+/* =====================================================
+   ORDER MODAL
+===================================================== */
 
-    document
-      .getElementById("vsFontB")
-      .addEventListener(
-        "change",
-        updateVS
-      );
+function openOrder(id) {
 
+    selectedFont =
+        fonts.find(f => f.id === id);
 
-    document
-      .getElementById("vsInput")
-      .addEventListener(
-        "input",
-        updateVS
-      );
 
+    if (!selectedFont) return;
 
-    function updateVS() {
 
-      const idA =
-        document.getElementById(
-          "vsFontA"
-        ).value;
-
-
-      const idB =
-        document.getElementById(
-          "vsFontB"
-        ).value;
-
-
-      const text =
-        document.getElementById(
-          "vsInput"
-        ).value;
-
-
-      const fontA =
-        fonts.find(
-          f => String(f.id) === String(idA)
-        );
-
-
-      const fontB =
-        fonts.find(
-          f => String(f.id) === String(idB)
-        );
-
-
-      document.getElementById(
-        "vsNameA"
-      ).textContent =
-        fontA?.name || "Font A";
-
-
-      document.getElementById(
-        "vsNameB"
-      ).textContent =
-        fontB?.name || "Font B";
-
-
-      document.getElementById(
-        "vsTextA"
-      ).textContent =
-        text;
-
-
-      document.getElementById(
-        "vsTextB"
-      ).textContent =
-        text;
-
-
-      if (fontA?.regular_url) {
-
-        loadVSFont(
-          fontA,
-          "vsFontAStyle"
-        );
-
-        document.getElementById(
-          "vsTextA"
-        ).style.fontFamily =
-          `"VS_${fontA.id}", sans-serif`;
-
-      }
-
-
-      if (fontB?.regular_url) {
-
-        loadVSFont(
-          fontB,
-          "vsFontBStyle"
-        );
-
-        document.getElementById(
-          "vsTextB"
-        ).style.fontFamily =
-          `"VS_${fontB.id}", sans-serif`;
-
-      }
-
-    }
-
-
-    function loadVSFont(
-      font,
-      styleId
-    ) {
-
-      let style =
-        document.getElementById(
-          styleId
-        );
-
-
-      if (!style) {
-
-        style =
-          document.createElement("style");
-
-        style.id =
-          styleId;
-
-        document.head.appendChild(
-          style
-        );
-
-      }
-
-
-      style.textContent = `
-
-        @font-face {
-
-          font-family: "VS_${font.id}";
-
-          src:
-            url("${font.regular_url}")
-            format("woff2");
-
-          font-weight: 400;
-
-        }
-
-      `;
-
-    }
-
-
-    function addToVS(id) {
-
-      openVSMode();
-
-      setTimeout(() => {
-
-        const selectA =
-          document.getElementById(
-            "vsFontA"
-          );
-
-
-        if (
-          selectA &&
-          fonts.some(
-            f => String(f.id) === String(id)
-          )
-        ) {
-
-          selectA.value =
-            String(id);
-
-          updateVS();
-
-        }
-
-      }, 50);
-
-    }
-
-
-    /* =========================================================
-       BUY MODAL
-    ========================================================= */
-
-    function openBuyModal(id) {
-
-      selectedFont =
-        fonts.find(
-          f => String(f.id) === String(id)
-        );
-
-
-      if (!selectedFont) return;
-
-
-      selectedLicense = null;
-
-
-      document
-        .querySelectorAll(".license-option")
-        .forEach(option =>
-          option.classList.remove(
-            "selected"
-          )
-        );
-
-
-      document.getElementById(
-        "buyFontName"
-      ).textContent =
+    document.getElementById("modalFontName")
+        .textContent =
         selectedFont.name;
 
 
-      document
-        .getElementById("buyModal")
-        .classList.add("active");
+    document.getElementById("licenseType")
+        .value = "Personal";
+
+
+    updateModalPrice();
+
+
+    document.getElementById("orderModal")
+        .classList.add("show");
+
+}
+
+
+function closeModal() {
+
+    document.getElementById("orderModal")
+        .classList.remove("show");
+
+}
+
+
+function updateModalPrice() {
+
+    if (!selectedFont) return;
+
+
+    const license =
+        document.getElementById("licenseType")
+            .value;
+
+
+    let price =
+        selectedFont.personal;
+
+
+    if (license === "Commercial") {
+
+        price =
+            selectedFont.commercial;
 
     }
 
 
-    function closeBuyModal() {
+    if (license === "Business") {
 
-      document
-        .getElementById("buyModal")
-        .classList.remove("active");
-
-    }
-
-
-    function selectLicense(element) {
-
-      document
-        .querySelectorAll(".license-option")
-        .forEach(option =>
-          option.classList.remove(
-            "selected"
-          )
-        );
-
-
-      element.classList.add(
-        "selected"
-      );
-
-
-      selectedLicense =
-        element.dataset.license;
+        price =
+            selectedFont.business;
 
     }
 
 
-    /* =========================================================
-       ORDER VIA LINE
-    ========================================================= */
+    document.getElementById("modalPrice")
+        .textContent =
+        "฿" + price.toLocaleString();
 
-    function orderViaLINE() {
-
-      if (!selectedFont) {
-
-        alert(
-          "กรุณาเลือกฟอนต์ก่อน"
-        );
-
-        return;
-
-      }
+}
 
 
-      if (!selectedLicense) {
+/* =====================================================
+   LINE OA
+===================================================== */
 
-        alert(
-          "กรุณาเลือกประเภทสิทธิ์การใช้งาน"
-        );
+function orderViaLine() {
 
-        return;
-
-      }
+    if (!selectedFont) return;
 
 
-      const orderCode =
-        createOrderCode();
+    const license =
+        document.getElementById("licenseType")
+            .value;
 
 
-      const message =
-
-        `สวัสดีค่ะ สนใจสั่งซื้อฟอนต์\n\n` +
-
-        `Font: ${selectedFont.name}\n` +
-
-        `License: ${selectedLicense}\n` +
-
-        `Order Code: ${orderCode}\n\n` +
-
-        `รบกวนแจ้งรายละเอียดการชำระเงินด้วยค่ะ`;
+    const message =
+        `สวัสดีค่ะ ต้องการสั่งซื้อฟอนต์ ${selectedFont.name}
+License: ${license}`;
 
 
-      const url =
-        LINE_OA_URL +
-        "?text=" +
-        encodeURIComponent(message);
+    openLine(message);
+
+}
 
 
-      window.open(
-        url,
+function openLine(message) {
+
+    const lineOA =
+        "https://line.me/R/";
+
+
+    window.open(
+        lineOA,
         "_blank"
-      );
-
-    }
-
-
-    /* =========================================================
-       CREATE ORDER CODE
-    ========================================================= */
-
-    function createOrderCode() {
-
-      const date =
-        new Date();
-
-
-      const y =
-        date.getFullYear();
-
-
-      const m =
-        String(
-          date.getMonth() + 1
-        ).padStart(2, "0");
-
-
-      const d =
-        String(
-          date.getDate()
-        ).padStart(2, "0");
-
-
-      const random =
-        Math.random()
-          .toString(36)
-          .substring(2, 7)
-          .toUpperCase();
-
-
-      return `THBR-${y}${m}${d}-${random}`;
-
-    }
-
-
-    /* =========================================================
-       NAVIGATION
-    ========================================================= */
-
-    function scrollToFonts() {
-
-      closeSidebar();
-
-      document
-        .getElementById("fonts")
-        .scrollIntoView({
-          behavior: "smooth"
-        });
-
-    }
-
-
-    function goHome() {
-
-      closeSidebar();
-
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
-
-    }
-
-
-    function goProfile() {
-
-      window.location.href =
-        "profile.html";
-
-    }
-
-
-    function goLogin() {
-
-      window.location.href =
-        "login.html";
-
-    }
-
-
-    function openLINE() {
-
-      window.open(
-        LINE_OA_URL,
-        "_blank"
-      );
-
-    }
-
-
-    /* =========================================================
-       ESCAPE HTML
-    ========================================================= */
-
-    function escapeHTML(value) {
-
-      return String(value)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
-
-    }
-
-
-    function escapeJS(value) {
-
-      return String(value)
-        .replaceAll("\\", "\\\\")
-        .replaceAll("'", "\\'");
-
-    }
-
-
-    /* =========================================================
-       CLOSE MODALS WHEN CLICK OUTSIDE
-    ========================================================= */
-
-    document
-      .getElementById("vsModal")
-      .addEventListener(
-        "click",
-        event => {
-
-          if (
-            event.target.id ===
-            "vsModal"
-          ) {
-
-            closeVSMode();
-
-          }
-
-        }
-      );
-
-
-    document
-      .getElementById("buyModal")
-      .addEventListener(
-        "click",
-        event => {
-
-          if (
-            event.target.id ===
-            "buyModal"
-          ) {
-
-            closeBuyModal();
-
-          }
-
-        }
-      );
-
-
-    /* =========================================================
-       ESC KEY
-    ========================================================= */
-
-    document.addEventListener(
-      "keydown",
-      event => {
-
-        if (
-          event.key === "Escape"
-        ) {
-
-          closeSidebar();
-
-          closeVSMode();
-
-          closeBuyModal();
-
-        }
-
-      }
     );
 
 
-    /* =========================================================
-       START
-    ========================================================= */
+    showToast(
+        "กำลังเปิด LINE OA..."
+    );
 
-    loadFonts();
+}
 
-  </script>
 
+/* =====================================================
+   GOOGLE LOGIN DEMO
+===================================================== */
+
+function loginGoogle() {
+
+    /*
+       จุดนี้ให้เชื่อม:
+
+       supabase.auth.signInWithOAuth({
+           provider: 'google'
+       })
+
+       หลังจากตั้งค่า Google Provider
+       ใน Supabase แล้ว
+    */
+
+
+    loggedIn = true;
+
+
+    updateProfile();
+
+
+    showToast(
+        "เข้าสู่ระบบสำเร็จ (Demo)"
+    );
+
+}
+
+
+function logout() {
+
+    loggedIn = false;
+
+
+    updateProfile();
+
+
+    showToast(
+        "ออกจากระบบแล้ว"
+    );
+
+}
+
+
+function updateProfile() {
+
+    const loginBox =
+        document.getElementById("loginBox");
+
+
+    const profileContent =
+        document.getElementById("profileContent");
+
+
+    if (loggedIn) {
+
+        loginBox.style.display =
+            "none";
+
+        profileContent.style.display =
+            "block";
+
+        renderProfileOrders();
+
+    } else {
+
+        loginBox.style.display =
+            "block";
+
+        profileContent.style.display =
+            "none";
+
+    }
+
+}
+
+
+/* =====================================================
+   PROFILE ORDERS
+===================================================== */
+
+function renderProfileOrders() {
+
+    const container =
+        document.getElementById(
+            "profileOrders"
+        );
+
+
+    const myOrders =
+        orders.filter(
+            order =>
+                order.customer ===
+                "demo@gmail.com"
+        );
+
+
+    container.innerHTML = "";
+
+
+    myOrders.forEach(order => {
+
+        const item =
+            document.createElement("div");
+
+        item.className = "order";
+
+
+        item.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${order.font}
+                </strong>
+
+                <div style="
+                    color:#96858c;
+                    font-size:12px;
+                    margin-top:4px;
+                ">
+
+                    ${order.id}
+                    ·
+                    ${order.license}
+
+                </div>
+
+            </div>
+
+
+            <span
+                class="status ${order.status}">
+
+                ${order.status}
+
+            </span>
+
+
+            ${
+                order.status === "approved"
+
+                ?
+
+                `
+                <a
+                    href="${order.drive}"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    ดาวน์โหลด
+
+                </a>
+                `
+
+                :
+
+                `
+                <span
+                    style="
+                    color:#96858c;
+                    font-size:12px;
+                    ">
+
+                    รออนุมัติ
+
+                </span>
+                `
+            }
+
+        `;
+
+
+        container.appendChild(item);
+
+    });
+
+}
+
+
+/* =====================================================
+   ORDERS PAGE
+===================================================== */
+
+function renderOrders() {
+
+    const container =
+        document.getElementById(
+            "ordersList"
+        );
+
+
+    container.innerHTML = "";
+
+
+    orders.forEach(order => {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "order";
+
+
+        div.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${order.font}
+                </strong>
+
+                <div style="
+                    font-size:12px;
+                    color:#96858c;
+                    margin-top:4px;
+                ">
+
+                    ${order.id}
+                    ·
+                    ${order.license}
+
+                </div>
+
+            </div>
+
+
+            <span
+                class="status ${order.status}">
+
+                ${order.status}
+
+            </span>
+
+
+            ${
+                order.status === "approved"
+
+                ?
+
+                `
+                <a
+                    href="${order.drive}"
+                    target="_blank"
+                    class="btn btn-primary">
+
+                    📁 Drive
+
+                </a>
+                `
+
+                :
+
+                `
+                <span
+                    style="
+                    color:#96858c;
+                    ">
+
+                    รอตรวจสอบ
+
+                </span>
+                `
+            }
+
+        `;
+
+
+        container.appendChild(div);
+
+    });
+
+}
+
+
+/* =====================================================
+   ADMIN LOGIN DEMO
+===================================================== */
+
+function adminLogin() {
+
+    const email =
+        document.getElementById(
+            "adminEmail"
+        ).value;
+
+
+    const password =
+        document.getElementById(
+            "adminPassword"
+        ).value;
+
+
+    /*
+       ห้ามใช้ password จริงแบบนี้ใน production
+
+       ให้เปลี่ยนเป็น Supabase Auth
+       + ตรวจ role admin จาก database
+    */
+
+
+    if (
+        email === "admin"
+        &&
+        password === "CHANGE_ME"
+    ) {
+
+        adminLoggedIn = true;
+
+
+        document.getElementById(
+            "adminLogin"
+        ).style.display = "none";
+
+
+        document.getElementById(
+            "adminPanel"
+        ).style.display = "block";
+
+
+        updateAdminStats();
+
+        loadOrders();
+
+
+        showToast(
+            "เข้าสู่ระบบ Admin สำเร็จ"
+        );
+
+    } else {
+
+        showToast(
+            "ข้อมูล Admin ไม่ถูกต้อง"
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   ADMIN STATS
+===================================================== */
+
+function updateAdminStats() {
+
+    document.getElementById(
+        "statFonts"
+    ).textContent =
+        fonts.length;
+
+
+    document.getElementById(
+        "statOrders"
+    ).textContent =
+        orders.length;
+
+
+    document.getElementById(
+        "statPending"
+    ).textContent =
+        orders.filter(
+            o => o.status === "pending"
+        ).length;
+
+
+    document.getElementById(
+        "statApproved"
+    ).textContent =
+        orders.filter(
+            o => o.status === "approved"
+        ).length;
+
+}
+
+
+/* =====================================================
+   ADMIN ORDER TABLE
+===================================================== */
+
+function loadOrders() {
+
+    const tbody =
+        document.getElementById(
+            "adminOrders"
+        );
+
+
+    tbody.innerHTML = "";
+
+
+    orders.forEach(order => {
+
+        const tr =
+            document.createElement("tr");
+
+
+        tr.innerHTML = `
+
+            <td>
+                ${order.id}
+            </td>
+
+            <td>
+                ${order.customer}
+            </td>
+
+            <td>
+                ${order.font}
+            </td>
+
+            <td>
+                ${order.license}
+            </td>
+
+            <td>
+
+                <button
+                    class="btn"
+                    onclick="viewSlip('${order.id}')">
+
+                    🖼 ดูสลิป
+
+                </button>
+
+            </td>
+
+            <td>
+
+                <span
+                    class="status ${order.status}">
+
+                    ${order.status}
+
+                </span>
+
+            </td>
+
+            <td>
+
+                ${
+                    order.status === "pending"
+
+                    ?
+
+                    `
+                    <button
+                        class="btn btn-primary"
+                        onclick="approveOrder('${order.id}')">
+
+                        ✓ Approve
+
+                    </button>
+                    `
+
+                    :
+
+                    `
+                    <span style="
+                    color:#35a466;
+                    ">
+                    Approved
+                    </span>
+                    `
+                }
+
+            </td>
+
+        `;
+
+
+        tbody.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
+   APPROVE ORDER
+===================================================== */
+
+function approveOrder(id) {
+
+    const order =
+        orders.find(
+            o => o.id === id
+        );
+
+
+    if (!order) return;
+
+
+    order.status =
+        "approved";
+
+
+    /*
+       Production:
+
+       await supabase
+          .from('orders')
+          .update({
+              status: 'approved',
+              approved_at: new Date()
+          })
+          .eq('id', id)
+
+    */
+
+
+    loadOrders();
+
+    updateAdminStats();
+
+    renderProfileOrders();
+
+    renderOrders();
+
+
+    showToast(
+        "อนุมัติ Order แล้ว"
+    );
+
+}
+
+
+/* =====================================================
+   VIEW SLIP
+===================================================== */
+
+function viewSlip(id) {
+
+    /*
+       Production:
+
+       ดึง slip_url จาก Supabase Storage
+
+       แล้วเปิดใน modal
+    */
+
+    showToast(
+        "Demo: เปิดหลักฐานการชำระเงินของ " + id
+    );
+
+}
+
+
+/* =====================================================
+   SAVE FONT
+===================================================== */
+
+function saveFont() {
+
+    const name =
+        document.getElementById(
+            "fontName"
+        ).value;
+
+
+    if (!name) {
+
+        showToast(
+            "กรุณาใส่ชื่อฟอนต์"
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Production:
+
+       1. Upload TTF / OTF
+          → Supabase Storage
+
+       2. insert ลง fonts table
+
+       3. เก็บ Drive URL
+          Personal / Commercial / Business
+    */
+
+
+    showToast(
+        "บันทึกฟอนต์สำเร็จ (Demo)"
+    );
+
+}
+
+
+/* =====================================================
+   TOAST
+===================================================== */
+
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add("show");
+
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2500);
+
+}
+
+
+/* =====================================================
+   INITIALIZE
+===================================================== */
+
+function init() {
+
+    renderFonts();
+
+    setupFontSelects();
+
+    updateTester();
+
+    updateVS();
+
+    renderOrders();
+
+    updateAdminStats();
+
+}
+
+
+init();
+
+</script>
 
 </body>
 </html>
