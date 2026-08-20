@@ -1,1 +1,5128 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
 
+<meta charset="UTF-8">
+
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
+
+<title>THBR Admin Panel</title>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600&display=swap"
+  rel="stylesheet"
+>
+
+<style>
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:"Prompt",sans-serif;
+  background:#fff8fb;
+  color:#463640;
+}
+
+button,
+input,
+select,
+textarea{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+.login-screen{
+
+  position:fixed;
+  inset:0;
+
+  z-index:99999;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  background:
+    radial-gradient(
+      circle at top left,
+      #ffe5f0,
+      transparent 35%
+    ),
+    #fff8fb;
+
+  padding:20px;
+
+}
+
+.login-screen.hidden{
+  display:none;
+}
+
+.login-box{
+
+  width:min(430px,100%);
+
+  background:white;
+
+  border:1px solid #f0dce6;
+
+  border-radius:28px;
+
+  padding:35px;
+
+  box-shadow:
+    0 20px 60px
+    rgba(90,45,70,.12);
+
+  text-align:center;
+
+}
+
+.login-logo{
+
+  font-family:"Kanit";
+
+  font-size:38px;
+
+  font-weight:600;
+
+  color:#d9578e;
+
+}
+
+.login-sub{
+
+  color:#a18896;
+
+  font-size:13px;
+
+  margin-bottom:30px;
+
+}
+
+.login-box input{
+
+  width:100%;
+
+  height:50px;
+
+  border:1px solid #ead9e2;
+
+  border-radius:14px;
+
+  padding:0 15px;
+
+  margin-bottom:12px;
+
+  outline:none;
+
+}
+
+.login-box input:focus{
+
+  border-color:#d9578e;
+
+}
+
+.login-btn{
+
+  width:100%;
+
+  height:50px;
+
+  border:none;
+
+  border-radius:14px;
+
+  background:#d9578e;
+
+  color:white;
+
+  font-size:15px;
+
+  font-weight:500;
+
+}
+
+.login-error{
+
+  color:#d74c64;
+
+  font-size:13px;
+
+  margin-top:12px;
+
+  min-height:20px;
+
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.app{
+
+  min-height:100vh;
+
+  display:none;
+
+}
+
+.app.active{
+  display:block;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.sidebar{
+
+  position:fixed;
+
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:270px;
+
+  background:#fff;
+
+  border-right:1px solid #f0dfe7;
+
+  z-index:3000;
+
+  padding:22px;
+
+  overflow-y:auto;
+
+  transition:.3s;
+
+}
+
+.sidebar-logo{
+
+  font-family:"Kanit";
+
+  font-size:25px;
+
+  color:#d9578e;
+
+  margin-bottom:5px;
+
+}
+
+.sidebar-sub{
+
+  font-size:11px;
+
+  color:#a88d9a;
+
+  margin-bottom:25px;
+
+}
+
+.nav-title{
+
+  font-size:10px;
+
+  color:#b19ba6;
+
+  letter-spacing:1px;
+
+  margin:20px 10px 7px;
+
+}
+
+.nav-btn{
+
+  width:100%;
+
+  border:none;
+
+  background:transparent;
+
+  padding:12px 13px;
+
+  border-radius:12px;
+
+  text-align:left;
+
+  color:#675361;
+
+  margin-bottom:4px;
+
+  transition:.2s;
+
+}
+
+.nav-btn:hover,
+.nav-btn.active{
+
+  background:#fff0f6;
+
+  color:#d9578e;
+
+}
+
+.sidebar-bottom{
+
+  margin-top:25px;
+
+  padding-top:20px;
+
+  border-top:1px solid #f2e4ea;
+
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.main{
+
+  margin-left:270px;
+
+  min-height:100vh;
+
+}
+
+.topbar{
+
+  position:sticky;
+
+  top:0;
+
+  z-index:1000;
+
+  height:70px;
+
+  background:rgba(255,255,255,.94);
+
+  backdrop-filter:blur(12px);
+
+  border-bottom:1px solid #f0dfe7;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  padding:0 28px;
+
+}
+
+.mobile-menu{
+
+  display:none;
+
+  border:none;
+
+  background:#fff0f6;
+
+  color:#d9578e;
+
+  width:40px;
+
+  height:40px;
+
+  border-radius:12px;
+
+  font-size:20px;
+
+}
+
+.page-title{
+
+  font-family:"Kanit";
+
+  font-size:24px;
+
+}
+
+.back-btn{
+
+  border:1px solid #ead7e1;
+
+  background:white;
+
+  padding:9px 14px;
+
+  border-radius:12px;
+
+  color:#745c69;
+
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.content{
+
+  padding:28px;
+
+  max-width:1500px;
+
+  margin:auto;
+
+}
+
+.page{
+
+  display:none;
+
+}
+
+.page.active{
+  display:block;
+}
+
+.page-heading{
+
+  margin-bottom:25px;
+
+}
+
+.page-heading h1{
+
+  font-family:"Kanit";
+
+  font-size:30px;
+
+}
+
+.page-heading p{
+
+  color:#9a8490;
+
+  font-size:13px;
+
+  margin-top:5px;
+
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.stats{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(4,1fr);
+
+  gap:18px;
+
+  margin-bottom:25px;
+
+}
+
+.stat-card{
+
+  background:white;
+
+  border:1px solid #f0dfe7;
+
+  border-radius:20px;
+
+  padding:22px;
+
+}
+
+.stat-icon{
+
+  font-size:25px;
+
+  margin-bottom:10px;
+
+}
+
+.stat-number{
+
+  font-family:"Kanit";
+
+  font-size:30px;
+
+  color:#d9578e;
+
+}
+
+.stat-label{
+
+  color:#9b8591;
+
+  font-size:12px;
+
+}
+
+
+/* =========================================================
+   CARD
+========================================================= */
+
+.panel{
+
+  background:white;
+
+  border:1px solid #f0dfe7;
+
+  border-radius:20px;
+
+  padding:22px;
+
+  margin-bottom:22px;
+
+}
+
+.panel-title{
+
+  font-family:"Kanit";
+
+  font-size:20px;
+
+  margin-bottom:18px;
+
+}
+
+
+/* =========================================================
+   FORM
+========================================================= */
+
+.form-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:16px;
+
+}
+
+.form-group{
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:6px;
+
+}
+
+.form-group.full{
+
+  grid-column:1/-1;
+
+}
+
+.form-group label{
+
+  font-size:12px;
+
+  color:#806b77;
+
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select{
+
+  width:100%;
+
+  border:1px solid #e8d8e1;
+
+  border-radius:12px;
+
+  padding:11px 13px;
+
+  outline:none;
+
+  background:white;
+
+}
+
+.form-group textarea{
+
+  min-height:110px;
+
+  resize:vertical;
+
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus{
+
+  border-color:#d9578e;
+
+}
+
+.file-help{
+
+  font-size:11px;
+
+  color:#a58d99;
+
+}
+
+.form-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:18px;
+
+  flex-wrap:wrap;
+
+}
+
+.btn{
+
+  border:none;
+
+  border-radius:12px;
+
+  padding:10px 16px;
+
+}
+
+.btn-primary{
+
+  background:#d9578e;
+
+  color:white;
+
+}
+
+.btn-secondary{
+
+  background:#f5edf2;
+
+  color:#725c69;
+
+}
+
+.btn-danger{
+
+  background:#ffe8eb;
+
+  color:#cf5262;
+
+}
+
+.btn-success{
+
+  background:#06c755;
+
+  color:white;
+
+}
+
+
+/* =========================================================
+   FONT TABLE
+========================================================= */
+
+.table-wrap{
+
+  overflow-x:auto;
+
+}
+
+table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+  min-width:800px;
+
+}
+
+th{
+
+  text-align:left;
+
+  background:#fff5f8;
+
+  color:#806976;
+
+  font-size:12px;
+
+  padding:12px;
+
+}
+
+td{
+
+  padding:12px;
+
+  border-bottom:1px solid #f3e7ec;
+
+  font-size:13px;
+
+}
+
+.badge{
+
+  display:inline-block;
+
+  padding:4px 9px;
+
+  border-radius:20px;
+
+  font-size:10px;
+
+}
+
+.badge-pink{
+
+  background:#ffeaf2;
+
+  color:#d9578e;
+
+}
+
+.badge-green{
+
+  background:#e7faef;
+
+  color:#19994f;
+
+}
+
+.badge-yellow{
+
+  background:#fff5d8;
+
+  color:#a87900;
+
+}
+
+.badge-red{
+
+  background:#ffe7ea;
+
+  color:#c84959;
+
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+.order-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(2,1fr);
+
+  gap:18px;
+
+}
+
+.order-card{
+
+  border:1px solid #f0dfe7;
+
+  border-radius:18px;
+
+  padding:18px;
+
+}
+
+.order-head{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  margin-bottom:15px;
+
+}
+
+.order-code{
+
+  font-weight:600;
+
+  color:#d9578e;
+
+}
+
+.order-row{
+
+  display:flex;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+  padding:7px 0;
+
+  font-size:13px;
+
+  border-bottom:1px dashed #f0e5e9;
+
+}
+
+.order-row span:first-child{
+
+  color:#9b8490;
+
+}
+
+.slip-image{
+
+  width:100%;
+
+  max-height:400px;
+
+  object-fit:contain;
+
+  background:#faf5f7;
+
+  border-radius:12px;
+
+  margin-top:15px;
+
+}
+
+.order-actions{
+
+  display:flex;
+
+  gap:8px;
+
+  margin-top:15px;
+
+  flex-wrap:wrap;
+
+}
+
+
+/* =========================================================
+   SIDEBAR CONTENT EDITOR
+========================================================= */
+
+.menu-editor{
+
+  display:grid;
+
+  gap:14px;
+
+}
+
+.menu-item{
+
+  border:1px solid #efdee6;
+
+  border-radius:16px;
+
+  padding:15px;
+
+  background:#fff;
+
+}
+
+.menu-item-main{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+  gap:10px;
+
+}
+
+.menu-children{
+
+  margin-top:12px;
+
+  padding-left:20px;
+
+  border-left:2px solid #f4dce6;
+
+  display:grid;
+
+  gap:8px;
+
+}
+
+.child-item{
+
+  padding:9px;
+
+  background:#fff7fa;
+
+  border-radius:10px;
+
+  font-size:12px;
+
+}
+
+.editor-type{
+
+  display:flex;
+
+  gap:8px;
+
+  flex-wrap:wrap;
+
+}
+
+.type-choice{
+
+  border:1px solid #eadbe3;
+
+  background:white;
+
+  padding:9px 13px;
+
+  border-radius:10px;
+
+  font-size:12px;
+
+}
+
+.type-choice.active{
+
+  background:#d9578e;
+
+  border-color:#d9578e;
+
+  color:white;
+
+}
+
+
+/* =========================================================
+   CATALOG
+========================================================= */
+
+.catalog-grid{
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:16px;
+
+}
+
+.catalog-card{
+
+  border:1px solid #f0dfe7;
+
+  border-radius:18px;
+
+  padding:18px;
+
+  background:white;
+
+}
+
+.catalog-card h3{
+
+  font-family:"Kanit";
+
+  margin-bottom:8px;
+
+}
+
+.catalog-card p{
+
+  color:#9b8490;
+
+  font-size:12px;
+
+  line-height:1.7;
+
+}
+
+
+/* =========================================================
+   OVERLAY
+========================================================= */
+
+.mobile-overlay{
+
+  display:none;
+
+  position:fixed;
+
+  inset:0;
+
+  background:rgba(40,20,30,.35);
+
+  z-index:2500;
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.toast{
+
+  position:fixed;
+
+  right:20px;
+
+  bottom:20px;
+
+  background:#493541;
+
+  color:white;
+
+  padding:13px 17px;
+
+  border-radius:13px;
+
+  opacity:0;
+
+  transform:translateY(20px);
+
+  pointer-events:none;
+
+  transition:.3s;
+
+  z-index:99999;
+
+  font-size:13px;
+
+}
+
+.toast.show{
+
+  opacity:1;
+
+  transform:translateY(0);
+
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1100px){
+
+  .stats{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+  .catalog-grid{
+
+    grid-template-columns:
+      repeat(2,1fr);
+
+  }
+
+}
+
+@media(max-width:800px){
+
+  .sidebar{
+
+    left:-280px;
+
+  }
+
+  .sidebar.open{
+
+    left:0;
+
+  }
+
+  .main{
+
+    margin-left:0;
+
+  }
+
+  .mobile-menu{
+
+    display:block;
+
+  }
+
+  .mobile-overlay.active{
+
+    display:block;
+
+  }
+
+  .form-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .order-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+}
+
+@media(max-width:600px){
+
+  .content{
+
+    padding:18px;
+
+  }
+
+  .topbar{
+
+    padding:0 15px;
+
+  }
+
+  .page-title{
+
+    font-size:20px;
+
+  }
+
+  .stats{
+
+    grid-template-columns:1fr 1fr;
+
+    gap:10px;
+
+  }
+
+  .stat-card{
+
+    padding:15px;
+
+  }
+
+  .stat-number{
+
+    font-size:25px;
+
+  }
+
+  .catalog-grid{
+
+    grid-template-columns:1fr;
+
+  }
+
+  .form-actions{
+
+    flex-direction:column;
+
+  }
+
+  .form-actions .btn{
+
+    width:100%;
+
+  }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================================================
+     LOGIN SCREEN
+========================================================= -->
+
+<div
+  class="login-screen"
+  id="loginScreen"
+>
+
+  <div class="login-box">
+
+    <div class="login-logo">
+      THBR
+    </div>
+
+    <div class="login-sub">
+      FONT STUDIO · ADMIN
+    </div>
+
+
+    <input
+      id="adminUsername"
+      type="text"
+      placeholder="Username"
+      autocomplete="username"
+    >
+
+
+    <input
+      id="adminPassword"
+      type="password"
+      placeholder="Password"
+      autocomplete="current-password"
+    >
+
+
+    <button
+      class="login-btn"
+      onclick="adminLogin()"
+    >
+      เข้าสู่ระบบ Admin
+    </button>
+
+
+    <div
+      class="login-error"
+      id="loginError"
+    ></div>
+
+  </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     APP
+========================================================= -->
+
+<div
+  class="app"
+  id="app"
+>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+  class="sidebar"
+  id="sidebar"
+>
+
+  <div class="sidebar-logo">
+    THBR ADMIN
+  </div>
+
+  <div class="sidebar-sub">
+    Font Studio Management
+  </div>
+
+
+  <div class="nav-title">
+    OVERVIEW
+  </div>
+
+
+  <button
+    class="nav-btn active"
+    onclick="showPage('dashboard',this)"
+  >
+    📊 Dashboard
+  </button>
+
+
+  <div class="nav-title">
+    FONT MANAGEMENT
+  </div>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('fonts',this)"
+  >
+    🔤 แคตตาล็อกฟอนต์ทั้งหมด
+  </button>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('fontForm',this)"
+  >
+    ➕ เพิ่ม / แก้ไขฟอนต์
+  </button>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('vs',this)"
+  >
+    ⚡ โหมดเปรียบเทียบ VS Mode
+  </button>
+
+
+  <div class="nav-title">
+    ORDER
+  </div>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('orders',this)"
+  >
+    🧾 Orders Approval
+  </button>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('history',this)"
+  >
+    📚 ประวัติสั่งซื้อ & ใบเสร็จ / Drive
+  </button>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('otherFonts',this)"
+  >
+    🌐 สั่งซื้อฟอนต์เครืออื่นๆ
+  </button>
+
+
+  <div class="nav-title">
+    WEBSITE CONTENT
+  </div>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('menuEditor',this)"
+  >
+    🗂️ จัดการ Sidebar / Menu
+  </button>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('contentEditor',this)"
+  >
+    ✏️ แก้ไขเนื้อหาเว็บไซต์
+  </button>
+
+
+  <div class="nav-title">
+    LEGAL
+  </div>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('license',this)"
+  >
+    📜 เงื่อนไข & ประเภทการใช้งาน
+  </button>
+
+
+  <button
+    class="nav-btn"
+    onclick="showPage('copyright',this)"
+  >
+    🚫 กฎและข้อห้ามลิขสิทธิ์
+  </button>
+
+
+  <div class="sidebar-bottom">
+
+    <button
+      class="nav-btn"
+      onclick="goHome()"
+    >
+      🏠 กลับหน้าเว็บ
+    </button>
+
+
+    <button
+      class="nav-btn"
+      onclick="logout()"
+    >
+      🚪 ออกจากระบบ
+    </button>
+
+  </div>
+
+</aside>
+
+
+
+<div
+  class="mobile-overlay"
+  id="mobileOverlay"
+  onclick="closeMobileSidebar()"
+></div>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<div class="main">
+
+
+<header class="topbar">
+
+  <div
+    style="
+      display:flex;
+      align-items:center;
+      gap:12px;
+    "
+  >
+
+    <button
+      class="mobile-menu"
+      onclick="openMobileSidebar()"
+    >
+      ☰
+    </button>
+
+    <div
+      class="page-title"
+      id="pageTitle"
+    >
+      Dashboard
+    </div>
+
+  </div>
+
+
+  <button
+    class="back-btn"
+    onclick="goHome()"
+  >
+    ← หน้าเว็บไซต์
+  </button>
+
+</header>
+
+
+
+<main class="content">
+
+
+<!-- =======================================================
+     DASHBOARD
+======================================================= -->
+
+<section
+  class="page active"
+  id="page-dashboard"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      Dashboard
+    </h1>
+
+    <p>
+      ภาพรวมระบบ THBR Font Studio
+    </p>
+
+  </div>
+
+
+  <div class="stats">
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        🔤
+      </div>
+
+      <div
+        class="stat-number"
+        id="statFonts"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        ฟอนต์ทั้งหมด
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        🧾
+      </div>
+
+      <div
+        class="stat-number"
+        id="statOrders"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        Orders
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        ⏳
+      </div>
+
+      <div
+        class="stat-number"
+        id="statPending"
+      >
+        0
+      </div>
+
+      <div class="stat-label">
+        รออนุมัติ
+      </div>
+
+    </div>
+
+
+    <div class="stat-card">
+
+      <div class="stat-icon">
+        💰
+      </div>
+
+      <div
+        class="stat-number"
+        id="statSales"
+      >
+        ฿0
+      </div>
+
+      <div class="stat-label">
+        ยอดขาย
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panel-title">
+      ⚡ Quick Actions
+    </div>
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="showPageById('fontForm')"
+      >
+        + เพิ่มฟอนต์
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="showPageById('orders')"
+      >
+        🧾 ตรวจ Orders
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="showPageById('menuEditor')"
+      >
+        🗂️ แก้ Sidebar
+      </button>
+
+      <button
+        class="btn btn-secondary"
+        onclick="showPageById('contentEditor')"
+      >
+        ✏️ แก้เนื้อหา
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FONT CATALOG
+======================================================= -->
+
+<section
+  class="page"
+  id="page-fonts"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      แคตตาล็อกฟอนต์ทั้งหมด
+    </h1>
+
+    <p>
+      เพิ่ม แก้ไข และจัดการฟอนต์
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              ID
+            </th>
+
+            <th>
+              Font
+            </th>
+
+            <th>
+              Category
+            </th>
+
+            <th>
+              ราคา
+            </th>
+
+            <th>
+              License
+            </th>
+
+            <th>
+              File
+            </th>
+
+            <th>
+              จัดการ
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="fontTable">
+
+          <tr>
+
+            <td colspan="7">
+              กำลังโหลด...
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     FONT FORM
+======================================================= -->
+
+<section
+  class="page"
+  id="page-fontForm"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      เพิ่ม / แก้ไขฟอนต์
+    </h1>
+
+    <p>
+      จัดการข้อมูลและไฟล์ฟอนต์
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panel-title">
+      🔤 Font Information
+    </div>
+
+
+    <form
+      id="fontFormElement"
+    >
+
+      <input
+        type="hidden"
+        id="fontId"
+      >
+
+
+      <div class="form-grid">
+
+
+        <div class="form-group">
+
+          <label>
+            ชื่อฟอนต์ *
+          </label>
+
+          <input
+            id="fontName"
+            required
+            placeholder="เช่น BR Fonphrom"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            หมวดหมู่
+          </label>
+
+          <input
+            id="fontCategory"
+            placeholder="Thai / Cute / Modern"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ประเภทราคา
+          </label>
+
+          <select id="fontFilterType">
+
+            <option value="single">
+              ราคาเดียว
+            </option>
+
+            <option value="separate">
+              แยกสิทธิ์
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ราคาเริ่มต้น
+          </label>
+
+          <input
+            id="fontPrice"
+            type="number"
+            min="0"
+            placeholder="299"
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            ข้อความ Preview
+          </label>
+
+          <textarea
+            id="fontPreview"
+            placeholder="สวัสดีค่ะ ทดลองพิมพ์ฟอนต์นี้"
+          ></textarea>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ไฟล์ Regular (.ttf / .otf / .woff2)
+          </label>
+
+          <input
+            type="file"
+            id="regularFile"
+            accept=".ttf,.otf,.woff,.woff2"
+          >
+
+          <span class="file-help">
+            ระบบจะอัปโหลดเข้า Supabase Storage
+          </span>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ไฟล์ Bold
+          </label>
+
+          <input
+            type="file"
+            id="boldFile"
+            accept=".ttf,.otf,.woff,.woff2"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            ไฟล์ Thin
+          </label>
+
+          <input
+            type="file"
+            id="thinFile"
+            accept=".ttf,.otf,.woff,.woff2"
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Google Drive — Personal
+          </label>
+
+          <input
+            id="drivePersonal"
+            type="url"
+            placeholder="https://drive.google.com/..."
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Google Drive — Commercial
+          </label>
+
+          <input
+            id="driveCommercial"
+            type="url"
+            placeholder="https://drive.google.com/..."
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Google Drive — Business
+          </label>
+
+          <input
+            id="driveBusiness"
+            type="url"
+            placeholder="https://drive.google.com/..."
+          >
+
+        </div>
+
+
+        <div class="form-group full">
+
+          <label>
+            คำอธิบาย
+          </label>
+
+          <textarea
+            id="fontDescription"
+            placeholder="รายละเอียดฟอนต์..."
+          ></textarea>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-actions">
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+        >
+          💾 บันทึกฟอนต์
+        </button>
+
+
+        <button
+          type="button"
+          class="btn btn-secondary"
+          onclick="clearFontForm()"
+        >
+          ล้างข้อมูล
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     ORDERS
+======================================================= -->
+
+<section
+  class="page"
+  id="page-orders"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      Orders Approval
+    </h1>
+
+    <p>
+      ตรวจสอบการแจ้งชำระเงินและอนุมัติ Order
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-secondary"
+        onclick="loadOrders()"
+      >
+        ↻ Refresh
+      </button>
+
+      <select
+        id="orderStatusFilter"
+        onchange="renderOrders()"
+        style="
+          border:1px solid #eadbe3;
+          border-radius:12px;
+          padding:10px;
+        "
+      >
+
+        <option value="all">
+          ทุกสถานะ
+        </option>
+
+        <option value="pending">
+          Pending
+        </option>
+
+        <option value="paid">
+          Paid
+        </option>
+
+        <option value="approved">
+          Approved
+        </option>
+
+        <option value="rejected">
+          Rejected
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="order-grid"
+    id="ordersGrid"
+  >
+
+    <div class="panel">
+      กำลังโหลด Orders...
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     HISTORY
+======================================================= -->
+
+<section
+  class="page"
+  id="page-history"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      ประวัติสั่งซื้อ & ใบเสร็จ / Drive
+    </h1>
+
+    <p>
+      เก็บประวัติ Order และลิงก์ไฟล์สำหรับลูกค้า
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="table-wrap">
+
+      <table>
+
+        <thead>
+
+          <tr>
+
+            <th>
+              Order
+            </th>
+
+            <th>
+              ลูกค้า
+            </th>
+
+            <th>
+              Font
+            </th>
+
+            <th>
+              License
+            </th>
+
+            <th>
+              ราคา
+            </th>
+
+            <th>
+              สถานะ
+            </th>
+
+            <th>
+              Drive
+            </th>
+
+          </tr>
+
+        </thead>
+
+        <tbody id="historyTable">
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     VS
+======================================================= -->
+
+<section
+  class="page"
+  id="page-vs"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      ⚡ VS Mode
+    </h1>
+
+    <p>
+      ตั้งค่าระบบเปรียบเทียบฟอนต์
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          ฟอนต์ A
+        </label>
+
+        <select id="adminVsA">
+        </select>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          ฟอนต์ B
+        </label>
+
+        <select id="adminVsB">
+        </select>
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          ข้อความตัวอย่าง
+        </label>
+
+        <textarea id="adminVsText">สวัสดีค่ะ ทดลองเปรียบเทียบฟอนต์</textarea>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     OTHER FONTS
+======================================================= -->
+
+<section
+  class="page"
+  id="page-otherFonts"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      🌐 สั่งซื้อฟอนต์เครืออื่นๆ
+    </h1>
+
+    <p>
+      จัดการรายการฟอนต์จากเครืออื่น
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          ชื่อร้าน / ผู้สร้าง
+        </label>
+
+        <input
+          id="otherFontVendor"
+          placeholder="ชื่อเจ้าของฟอนต์"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          ชื่อฟอนต์
+        </label>
+
+        <input
+          id="otherFontName"
+          placeholder="ชื่อฟอนต์"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          ลิงก์สั่งซื้อ
+        </label>
+
+        <input
+          id="otherFontURL"
+          type="url"
+          placeholder="https://..."
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveOtherFont()"
+      >
+        + เพิ่มรายการ
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="catalog-grid"
+    id="otherFontsGrid"
+  ></div>
+
+</section>
+
+
+
+<!-- =======================================================
+     MENU EDITOR
+======================================================= -->
+
+<section
+  class="page"
+  id="page-menuEditor"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      🗂️ จัดการ Sidebar Menu
+    </h1>
+
+    <p>
+      เพิ่มหัวข้อหลักและหัวข้อย่อยของเว็บไซต์
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="panel-title">
+      เพิ่มหัวข้อใหม่
+    </div>
+
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          ชื่อหัวข้อ
+        </label>
+
+        <input
+          id="menuTitle"
+          placeholder="เช่น แคตตาล็อกฟอนต์"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          ลิงก์ / หน้า
+        </label>
+
+        <input
+          id="menuURL"
+          placeholder="catalog.html"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          รูปแบบการแสดงผล
+        </label>
+
+
+        <div class="editor-type">
+
+          <button
+            class="type-choice active"
+            data-type="card"
+            onclick="chooseMenuType(this)"
+          >
+            🖼️ กรอบ Card
+          </button>
+
+
+          <button
+            class="type-choice"
+            data-type="text"
+            onclick="chooseMenuType(this)"
+          >
+            📝 ข้อความยาว
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="addMenuItem()"
+      >
+        + เพิ่มหัวข้อหลัก
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="menu-editor"
+    id="menuEditorList"
+  ></div>
+
+</section>
+
+
+
+<!-- =======================================================
+     CONTENT EDITOR
+======================================================= -->
+
+<section
+  class="page"
+  id="page-contentEditor"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      ✏️ แก้ไขเนื้อหาเว็บไซต์
+    </h1>
+
+    <p>
+      เพิ่มหัวข้อใหญ่ หัวข้อย่อย และข้อความ
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="form-grid">
+
+
+      <div class="form-group">
+
+        <label>
+          หัวข้อใหญ่
+        </label>
+
+        <input
+          id="contentHeading"
+          placeholder="หัวข้อใหญ่"
+        >
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          หัวข้อย่อย
+        </label>
+
+        <input
+          id="contentSubheading"
+          placeholder="หัวข้อย่อย"
+        >
+
+      </div>
+
+
+      <div class="form-group full">
+
+        <label>
+          เนื้อหา
+        </label>
+
+        <textarea
+          id="contentBody"
+          style="min-height:220px"
+          placeholder="ใส่ข้อความยาว..."
+        ></textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          รูปแบบ
+        </label>
+
+        <select id="contentType">
+
+          <option value="card">
+            กรอบ Card
+          </option>
+
+          <option value="text">
+            ข้อความยาว
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveContent()"
+      >
+        💾 บันทึกเนื้อหา
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <div
+    class="catalog-grid"
+    id="contentList"
+  ></div>
+
+</section>
+
+
+
+<!-- =======================================================
+     LICENSE
+======================================================= -->
+
+<section
+  class="page"
+  id="page-license"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      📜 เงื่อนไข & ประเภทการใช้งาน
+    </h1>
+
+    <p>
+      กำหนดรายละเอียด License
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="form-grid">
+
+      <div class="form-group">
+
+        <label>
+          Personal
+        </label>
+
+        <textarea id="licensePersonal">สำหรับใช้งานส่วนตัว</textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Commercial
+        </label>
+
+        <textarea id="licenseCommercial">สำหรับงานเชิงพาณิชย์</textarea>
+
+      </div>
+
+
+      <div class="form-group">
+
+        <label>
+          Business
+        </label>
+
+        <textarea id="licenseBusiness">สำหรับบริษัทและธุรกิจ</textarea>
+
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveLicense()"
+      >
+        💾 บันทึก
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+
+<!-- =======================================================
+     COPYRIGHT
+======================================================= -->
+
+<section
+  class="page"
+  id="page-copyright"
+>
+
+  <div class="page-heading">
+
+    <h1>
+      🚫 กฎและข้อห้ามลิขสิทธิ์
+    </h1>
+
+    <p>
+      แก้ไขกฎการใช้งานฟอนต์
+    </p>
+
+  </div>
+
+
+  <div class="panel">
+
+    <div class="form-group">
+
+      <label>
+        กฎและข้อห้าม
+      </label>
+
+      <textarea
+        id="copyrightRules"
+        style="min-height:300px"
+      >ห้ามนำไฟล์ฟอนต์ไปแจกจ่ายต่อโดยไม่ได้รับอนุญาต</textarea>
+
+    </div>
+
+
+    <div class="form-actions">
+
+      <button
+        class="btn btn-primary"
+        onclick="saveCopyright()"
+      >
+        💾 บันทึกกฎลิขสิทธิ์
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+</div>
+
+</div>
+
+
+
+<div
+  class="toast"
+  id="toast"
+></div>
+
+
+
+<!-- =========================================================
+     SUPABASE
+========================================================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<script>
+
+/* =========================================================
+   SUPABASE CONFIG
+========================================================= */
+
+const SUPABASE_URL =
+  "YOUR_SUPABASE_URL";
+
+const SUPABASE_ANON_KEY =
+  "YOUR_SUPABASE_ANON_KEY";
+
+
+let db = null;
+
+
+if(
+  SUPABASE_URL !== "YOUR_SUPABASE_URL" &&
+  SUPABASE_ANON_KEY !== "YOUR_SUPABASE_ANON_KEY"
+){
+
+  db =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+}
+
+
+/* =========================================================
+   ADMIN DEMO LOGIN
+=========================================================
+
+   IMPORTANT:
+   ใช้สำหรับทดสอบเท่านั้น
+
+   Production ควรใช้ Supabase Auth
+
+========================================================= */
+
+const ADMIN_USERNAME =
+  "brprh";
+
+const ADMIN_PASSWORD =
+  "pleng235";
+
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const FONT_BUCKET =
+  "fonts";
+
+
+/* =========================================================
+   DATA
+========================================================= */
+
+let fonts = [];
+
+let orders = [];
+
+let menuItems = [];
+
+let contentItems = [];
+
+let otherFonts = [];
+
+let menuType = "card";
+
+let editingFontId = null;
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+function adminLogin(){
+
+  const username =
+    document.getElementById(
+      "adminUsername"
+    ).value.trim();
+
+  const password =
+    document.getElementById(
+      "adminPassword"
+    ).value;
+
+
+  if(
+    username === ADMIN_USERNAME &&
+    password === ADMIN_PASSWORD
+  ){
+
+    sessionStorage.setItem(
+      "thbr_admin",
+      "true"
+    );
+
+
+    document
+      .getElementById("loginScreen")
+      .classList.add("hidden");
+
+
+    document
+      .getElementById("app")
+      .classList.add("active");
+
+
+    initialize();
+
+  }else{
+
+    document
+      .getElementById("loginError")
+      .textContent =
+      "Username หรือ Password ไม่ถูกต้อง";
+
+  }
+
+}
+
+
+document
+  .getElementById("adminPassword")
+  .addEventListener(
+    "keydown",
+    e => {
+
+      if(e.key === "Enter"){
+        adminLogin();
+      }
+
+    }
+  );
+
+
+function logout(){
+
+  sessionStorage.removeItem(
+    "thbr_admin"
+  );
+
+  location.reload();
+
+}
+
+
+/* =========================================================
+   PAGE NAVIGATION
+========================================================= */
+
+const pageNames = {
+
+  dashboard:"Dashboard",
+
+  fonts:"แคตตาล็อกฟอนต์ทั้งหมด",
+
+  fontForm:"เพิ่ม / แก้ไขฟอนต์",
+
+  orders:"Orders Approval",
+
+  history:"ประวัติสั่งซื้อ & ใบเสร็จ / Drive",
+
+  vs:"VS Mode",
+
+  otherFonts:"สั่งซื้อฟอนต์เครืออื่นๆ",
+
+  menuEditor:"จัดการ Sidebar Menu",
+
+  contentEditor:"แก้ไขเนื้อหาเว็บไซต์",
+
+  license:"เงื่อนไข & ประเภทการใช้งาน",
+
+  copyright:"กฎและข้อห้ามลิขสิทธิ์"
+
+};
+
+
+function showPage(
+  name,
+  button
+){
+
+  document
+    .querySelectorAll(".page")
+    .forEach(page =>
+      page.classList.remove("active")
+    );
+
+
+  const target =
+    document.getElementById(
+      "page-" + name
+    );
+
+
+  if(target){
+    target.classList.add("active");
+  }
+
+
+  document
+    .querySelectorAll(".nav-btn")
+    .forEach(btn =>
+      btn.classList.remove("active")
+    );
+
+
+  if(button){
+    button.classList.add("active");
+  }
+
+
+  document.getElementById(
+    "pageTitle"
+  ).textContent =
+    pageNames[name] || name;
+
+
+  closeMobileSidebar();
+
+
+  if(name === "fonts"){
+    loadFonts();
+  }
+
+  if(name === "orders"){
+    loadOrders();
+  }
+
+  if(name === "history"){
+    renderHistory();
+  }
+
+  if(name === "menuEditor"){
+    renderMenuItems();
+  }
+
+}
+
+
+function showPageById(name){
+
+  const button =
+    [...document.querySelectorAll(".nav-btn")]
+      .find(
+        btn =>
+          btn.getAttribute("onclick") &&
+          btn.getAttribute("onclick")
+            .includes(`'${name}'`)
+      );
+
+
+  showPage(
+    name,
+    button
+  );
+
+}
+
+
+/* =========================================================
+   MOBILE SIDEBAR
+========================================================= */
+
+function openMobileSidebar(){
+
+  document
+    .getElementById("sidebar")
+    .classList.add("open");
+
+  document
+    .getElementById("mobileOverlay")
+    .classList.add("active");
+
+}
+
+
+function closeMobileSidebar(){
+
+  document
+    .getElementById("sidebar")
+    .classList.remove("open");
+
+  document
+    .getElementById("mobileOverlay")
+    .classList.remove("active");
+
+}
+
+
+/* =========================================================
+   HOME
+========================================================= */
+
+function goHome(){
+
+  window.location.href =
+    "index.html";
+
+}
+
+
+/* =========================================================
+   LOAD FONTS
+========================================================= */
+
+async function loadFonts(){
+
+  if(!db){
+
+    renderFontTable();
+
+    updateStats();
+
+    return;
+
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await db
+      .from("fonts")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    toast(
+      "โหลด Fonts ไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  fonts =
+    data || [];
+
+
+  renderFontTable();
+
+  updateStats();
+
+  populateAdminVS();
+
+}
+
+
+/* =========================================================
+   FONT TABLE
+========================================================= */
+
+function renderFontTable(){
+
+  const table =
+    document.getElementById(
+      "fontTable"
+    );
+
+
+  if(!fonts.length){
+
+    table.innerHTML = `
+
+      <tr>
+
+        <td colspan="7">
+
+          ยังไม่มีฟอนต์
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  table.innerHTML =
+    fonts.map(font => `
+
+      <tr>
+
+        <td>
+          ${font.id}
+        </td>
+
+        <td>
+          <strong>
+            ${escapeHTML(
+              font.name || "-"
+            )}
+          </strong>
+        </td>
+
+        <td>
+          ${escapeHTML(
+            font.category || "-"
+          )}
+        </td>
+
+        <td>
+          ฿${Number(
+            font.price || 0
+          ).toLocaleString()}
+        </td>
+
+        <td>
+
+          <span class="badge badge-pink">
+
+            ${
+              font.filter_type ===
+              "separate"
+              ? "แยกสิทธิ์"
+              : "ราคาเดียว"
+            }
+
+          </span>
+
+        </td>
+
+        <td>
+
+          ${
+            font.regular_url
+            ? `
+              <a
+                href="${font.regular_url}"
+                target="_blank"
+              >
+                เปิดไฟล์
+              </a>
+            `
+            : "-"
+          }
+
+        </td>
+
+        <td>
+
+          <button
+            class="btn btn-secondary"
+            onclick="editFont('${escapeJS(font.id)}')"
+          >
+            แก้ไข
+          </button>
+
+          <button
+            class="btn btn-danger"
+            onclick="deleteFont('${escapeJS(font.id)}')"
+          >
+            ลบ
+          </button>
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   FONT FORM
+========================================================= */
+
+document
+  .getElementById(
+    "fontFormElement"
+  )
+  .addEventListener(
+    "submit",
+    saveFont
+  );
+
+
+async function saveFont(event){
+
+  event.preventDefault();
+
+
+  const name =
+    document
+      .getElementById("fontName")
+      .value.trim();
+
+
+  if(!name){
+
+    toast(
+      "กรุณาใส่ชื่อฟอนต์"
+    );
+
+    return;
+
+  }
+
+
+  const fontData = {
+
+    name,
+
+    category:
+      document
+        .getElementById(
+          "fontCategory"
+        )
+        .value.trim(),
+
+    filter_type:
+      document
+        .getElementById(
+          "fontFilterType"
+        ).value,
+
+    price:
+      Number(
+        document
+          .getElementById(
+            "fontPrice"
+          ).value || 0
+      ),
+
+    preview:
+      document
+        .getElementById(
+          "fontPreview"
+        ).value,
+
+    drive_personal:
+      document
+        .getElementById(
+          "drivePersonal"
+        ).value.trim(),
+
+    drive_commercial:
+      document
+        .getElementById(
+          "driveCommercial"
+        ).value.trim(),
+
+    drive_business:
+      document
+        .getElementById(
+          "driveBusiness"
+        ).value.trim(),
+
+    description:
+      document
+        .getElementById(
+          "fontDescription"
+        ).value
+
+  };
+
+
+  /* -----------------------------------------
+     UPLOAD FILES
+  ----------------------------------------- */
+
+  const regular =
+    document.getElementById(
+      "regularFile"
+    ).files[0];
+
+
+  const bold =
+    document.getElementById(
+      "boldFile"
+    ).files[0];
+
+
+  const thin =
+    document.getElementById(
+      "thinFile"
+    ).files[0];
+
+
+  if(regular){
+
+    fontData.regular_url =
+      await uploadFontFile(
+        regular
+      );
+
+  }
+
+
+  if(bold){
+
+    fontData.bold_url =
+      await uploadFontFile(
+        bold
+      );
+
+  }
+
+
+  if(thin){
+
+    fontData.thin_url =
+      await uploadFontFile(
+        thin
+      );
+
+  }
+
+
+  /* -----------------------------------------
+     DEMO MODE
+  ----------------------------------------- */
+
+  if(!db){
+
+    fonts.push({
+
+      id:
+        Date.now(),
+
+      ...fontData
+
+    });
+
+
+    renderFontTable();
+
+    clearFontForm();
+
+    toast(
+      "บันทึก Demo สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  let result;
+
+
+  if(editingFontId){
+
+    result =
+      await db
+        .from("fonts")
+        .update(fontData)
+        .eq(
+          "id",
+          editingFontId
+        );
+
+  }else{
+
+    result =
+      await db
+        .from("fonts")
+        .insert(
+          fontData
+        );
+
+  }
+
+
+  if(result.error){
+
+    console.error(
+      result.error
+    );
+
+    toast(
+      "บันทึกไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    "บันทึกฟอนต์สำเร็จ ✓"
+  );
+
+
+  clearFontForm();
+
+  loadFonts();
+
+}
+
+
+/* =========================================================
+   UPLOAD FONT
+========================================================= */
+
+async function uploadFontFile(
+  file
+){
+
+  if(!db){
+
+    return "";
+
+  }
+
+
+  const ext =
+    file.name
+      .split(".")
+      .pop()
+      .toLowerCase();
+
+
+  const allowed = [
+    "ttf",
+    "otf",
+    "woff",
+    "woff2"
+  ];
+
+
+  if(
+    !allowed.includes(ext)
+  ){
+
+    throw new Error(
+      "ไม่รองรับไฟล์ชนิดนี้"
+    );
+
+  }
+
+
+  const filename =
+    `${Date.now()}-${Math.random()
+      .toString(36)
+      .slice(2)}.${ext}`;
+
+
+  const path =
+    `fonts/${filename}`;
+
+
+  const {
+    error
+  } =
+    await db
+      .storage
+      .from(FONT_BUCKET)
+      .upload(
+        path,
+        file,
+        {
+          upsert:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    throw error;
+
+  }
+
+
+  const {
+    data
+  } =
+    db
+      .storage
+      .from(FONT_BUCKET)
+      .getPublicUrl(path);
+
+
+  return data.publicUrl;
+
+}
+
+
+/* =========================================================
+   EDIT FONT
+========================================================= */
+
+function editFont(id){
+
+  const font =
+    fonts.find(
+      f =>
+        String(f.id) ===
+        String(id)
+    );
+
+
+  if(!font) return;
+
+
+  editingFontId =
+    font.id;
+
+
+  document.getElementById(
+    "fontId"
+  ).value =
+    font.id;
+
+
+  document.getElementById(
+    "fontName"
+  ).value =
+    font.name || "";
+
+
+  document.getElementById(
+    "fontCategory"
+  ).value =
+    font.category || "";
+
+
+  document.getElementById(
+    "fontFilterType"
+  ).value =
+    font.filter_type ||
+    "single";
+
+
+  document.getElementById(
+    "fontPrice"
+  ).value =
+    font.price || "";
+
+
+  document.getElementById(
+    "fontPreview"
+  ).value =
+    font.preview || "";
+
+
+  document.getElementById(
+    "drivePersonal"
+  ).value =
+    font.drive_personal || "";
+
+
+  document.getElementById(
+    "driveCommercial"
+  ).value =
+    font.drive_commercial || "";
+
+
+  document.getElementById(
+    "driveBusiness"
+  ).value =
+    font.drive_business || "";
+
+
+  document.getElementById(
+    "fontDescription"
+  ).value =
+    font.description || "";
+
+
+  showPageById(
+    "fontForm"
+  );
+
+}
+
+
+/* =========================================================
+   DELETE FONT
+========================================================= */
+
+async function deleteFont(id){
+
+  if(
+    !confirm(
+      "ต้องการลบฟอนต์นี้จริงหรือไม่?"
+    )
+  ){
+
+    return;
+
+  }
+
+
+  if(!db){
+
+    fonts =
+      fonts.filter(
+        f =>
+          String(f.id) !==
+          String(id)
+      );
+
+    renderFontTable();
+
+    toast(
+      "ลบ Demo สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await db
+      .from("fonts")
+      .delete()
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(error){
+
+    toast(
+      "ลบไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    "ลบฟอนต์สำเร็จ"
+  );
+
+
+  loadFonts();
+
+}
+
+
+/* =========================================================
+   CLEAR FONT FORM
+========================================================= */
+
+function clearFontForm(){
+
+  editingFontId =
+    null;
+
+
+  document
+    .getElementById(
+      "fontFormElement"
+    )
+    .reset();
+
+}
+
+
+/* =========================================================
+   ORDERS
+========================================================= */
+
+async function loadOrders(){
+
+  if(!db){
+
+    orders = [];
+
+    renderOrders();
+
+    updateStats();
+
+    return;
+
+  }
+
+
+  const {
+    data,
+    error
+  } =
+    await db
+      .from("orders")
+      .select("*")
+      .order(
+        "created_at",
+        {
+          ascending:false
+        }
+      );
+
+
+  if(error){
+
+    console.error(error);
+
+    toast(
+      "โหลด Orders ไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  orders =
+    data || [];
+
+
+  renderOrders();
+
+  renderHistory();
+
+  updateStats();
+
+}
+
+
+function renderOrders(){
+
+  const grid =
+    document.getElementById(
+      "ordersGrid"
+    );
+
+
+  const filter =
+    document.getElementById(
+      "orderStatusFilter"
+    ).value;
+
+
+  let data =
+    orders;
+
+
+  if(filter !== "all"){
+
+    data =
+      orders.filter(
+        o =>
+          String(
+            o.status
+          ).toLowerCase()
+          === filter
+      );
+
+  }
+
+
+  if(!data.length){
+
+    grid.innerHTML = `
+
+      <div class="panel">
+
+        ยังไม่มี Order
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  grid.innerHTML =
+    data.map(order => {
+
+      const status =
+        String(
+          order.status ||
+          "pending"
+        ).toLowerCase();
+
+
+      return `
+
+        <div class="order-card">
+
+          <div class="order-head">
+
+            <div>
+
+              <div class="order-code">
+
+                ${escapeHTML(
+                  order.order_code ||
+                  "-"
+                )}
+
+              </div>
+
+              <small>
+                ${escapeHTML(
+                  order.customer_name ||
+                  "ไม่ระบุชื่อ"
+                )}
+              </small>
+
+            </div>
+
+
+            <span
+              class="
+                badge
+                ${
+                  status === "approved"
+                  ? "badge-green"
+                  :
+                  status === "rejected"
+                  ? "badge-red"
+                  :
+                  "badge-yellow"
+                }
+              "
+            >
+
+              ${status}
+
+            </span>
+
+          </div>
+
+
+          <div class="order-row">
+
+            <span>
+              Font
+            </span>
+
+            <strong>
+              ${escapeHTML(
+                order.font_name ||
+                "-"
+              )}
+            </strong>
+
+          </div>
+
+
+          <div class="order-row">
+
+            <span>
+              License
+            </span>
+
+            <strong>
+              ${escapeHTML(
+                order.license ||
+                "-"
+              )}
+            </strong>
+
+          </div>
+
+
+          <div class="order-row">
+
+            <span>
+              ราคา
+            </span>
+
+            <strong>
+              ฿${Number(
+                order.amount || 0
+              ).toLocaleString()}
+            </strong>
+
+          </div>
+
+
+          <div class="order-row">
+
+            <span>
+              LINE
+            </span>
+
+            <strong>
+              ${escapeHTML(
+                order.line_user_id ||
+                "-"
+              )}
+            </strong>
+
+          </div>
+
+
+          ${
+            order.slip_url
+            ?
+            `
+              <a
+                href="${order.slip_url}"
+                target="_blank"
+              >
+
+                <img
+                  class="slip-image"
+                  src="${order.slip_url}"
+                  alt="Payment Slip"
+                >
+
+              </a>
+            `
+            :
+            `
+              <div
+                style="
+                  margin-top:15px;
+                  padding:20px;
+                  background:#fff7fa;
+                  border-radius:12px;
+                  color:#9b8490;
+                  text-align:center;
+                "
+              >
+                ยังไม่มีสลิป
+              </div>
+            `
+          }
+
+
+          <div class="order-actions">
+
+            ${
+              status !== "approved"
+              ?
+              `
+                <button
+                  class="btn btn-success"
+                  onclick="updateOrderStatus(
+                    '${escapeJS(order.id)}',
+                    'approved'
+                  )"
+                >
+                  ✓ อนุมัติ
+                </button>
+              `
+              :
+              ""
+            }
+
+
+            ${
+              status !== "rejected"
+              ?
+              `
+                <button
+                  class="btn btn-danger"
+                  onclick="updateOrderStatus(
+                    '${escapeJS(order.id)}',
+                    'rejected'
+                  )"
+                >
+                  ✕ ปฏิเสธ
+                </button>
+              `
+              :
+              ""
+            }
+
+
+            ${
+              order.line_url
+              ?
+              `
+                <a
+                  class="btn btn-secondary"
+                  href="${order.line_url}"
+                  target="_blank"
+                >
+                  💬 LINE
+                </a>
+              `
+              :
+              ""
+            }
+
+          </div>
+
+        </div>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* =========================================================
+   UPDATE ORDER
+========================================================= */
+
+async function updateOrderStatus(
+  id,
+  status
+){
+
+  if(!db){
+
+    const order =
+      orders.find(
+        o =>
+          String(o.id) ===
+          String(id)
+      );
+
+
+    if(order){
+
+      order.status =
+        status;
+
+    }
+
+
+    renderOrders();
+
+    updateStats();
+
+    return;
+
+  }
+
+
+  const {
+    error
+  } =
+    await db
+      .from("orders")
+      .update({
+        status
+      })
+      .eq(
+        "id",
+        id
+      );
+
+
+  if(error){
+
+    toast(
+      "เปลี่ยนสถานะไม่สำเร็จ"
+    );
+
+    return;
+
+  }
+
+
+  toast(
+    `Order ${status}`
+  );
+
+
+  loadOrders();
+
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function renderHistory(){
+
+  const table =
+    document.getElementById(
+      "historyTable"
+    );
+
+
+  if(!orders.length){
+
+    table.innerHTML = `
+
+      <tr>
+
+        <td colspan="7">
+
+          ยังไม่มีประวัติ
+
+        </td>
+
+      </tr>
+
+    `;
+
+    return;
+
+  }
+
+
+  table.innerHTML =
+    orders.map(order => `
+
+      <tr>
+
+        <td>
+          ${escapeHTML(
+            order.order_code || "-"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            order.customer_name || "-"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            order.font_name || "-"
+          )}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            order.license || "-"
+          )}
+        </td>
+
+        <td>
+          ฿${Number(
+            order.amount || 0
+          ).toLocaleString()}
+        </td>
+
+        <td>
+          ${escapeHTML(
+            order.status || "-"
+          )}
+        </td>
+
+        <td>
+
+          ${
+            order.drive_url
+            ?
+            `
+              <a
+                href="${order.drive_url}"
+                target="_blank"
+              >
+                เปิด Drive
+              </a>
+            `
+            :
+            "-"
+          }
+
+        </td>
+
+      </tr>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   MENU EDITOR
+========================================================= */
+
+function chooseMenuType(
+  button
+){
+
+  document
+    .querySelectorAll(
+      ".type-choice"
+    )
+    .forEach(
+      b =>
+        b.classList.remove(
+          "active"
+        )
+    );
+
+
+  button.classList.add(
+    "active"
+  );
+
+
+  menuType =
+    button.dataset.type;
+
+}
+
+
+function addMenuItem(){
+
+  const title =
+    document
+      .getElementById(
+        "menuTitle"
+      )
+      .value.trim();
+
+
+  const url =
+    document
+      .getElementById(
+        "menuURL"
+      )
+      .value.trim();
+
+
+  if(!title){
+
+    toast(
+      "กรุณาใส่ชื่อหัวข้อ"
+    );
+
+    return;
+
+  }
+
+
+  menuItems.push({
+
+    id:Date.now(),
+
+    title,
+
+    url,
+
+    type:menuType,
+
+    children:[]
+
+  });
+
+
+  document.getElementById(
+    "menuTitle"
+  ).value = "";
+
+
+  document.getElementById(
+    "menuURL"
+  ).value = "";
+
+
+  renderMenuItems();
+
+  saveMenuItemsToSupabase();
+
+}
+
+
+function renderMenuItems(){
+
+  const container =
+    document.getElementById(
+      "menuEditorList"
+    );
+
+
+  if(!menuItems.length){
+
+    container.innerHTML = `
+
+      <div class="panel">
+
+        ยังไม่มีหัวข้อ
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    menuItems.map(item => `
+
+      <div class="menu-item">
+
+        <div class="menu-item-main">
+
+          <div>
+
+            <strong>
+              ${escapeHTML(
+                item.title
+              )}
+            </strong>
+
+            <div
+              style="
+                font-size:11px;
+                color:#a58d99;
+              "
+            >
+
+              ${
+                item.type === "card"
+                ? "🖼️ Card"
+                : "📝 Text"
+              }
+
+              ·
+
+              ${escapeHTML(
+                item.url || "-"
+              )}
+
+            </div>
+
+          </div>
+
+
+          <button
+            class="btn btn-danger"
+            onclick="deleteMenuItem('${item.id}')"
+          >
+            ลบ
+          </button>
+
+        </div>
+
+
+        <div class="menu-children">
+
+          ${
+            item.children?.length
+            ?
+            item.children
+              .map(
+                child => `
+                  <div class="child-item">
+
+                    ${escapeHTML(
+                      child.title
+                    )}
+
+                  </div>
+                `
+              )
+              .join("")
+            :
+            `
+              <span
+                style="
+                  font-size:11px;
+                  color:#ad98a3;
+                "
+              >
+                ยังไม่มีหัวข้อย่อย
+              </span>
+            `
+          }
+
+        </div>
+
+
+        <div class="form-actions">
+
+          <button
+            class="btn btn-secondary"
+            onclick="addChildMenu('${item.id}')"
+          >
+            + เพิ่มหัวข้อย่อย
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+function addChildMenu(
+  parentId
+){
+
+  const title =
+    prompt(
+      "ชื่อหัวข้อย่อย"
+    );
+
+
+  if(!title) return;
+
+
+  const parent =
+    menuItems.find(
+      item =>
+        String(item.id) ===
+        String(parentId)
+    );
+
+
+  if(!parent) return;
+
+
+  if(!parent.children){
+
+    parent.children = [];
+
+  }
+
+
+  parent.children.push({
+
+    id:Date.now(),
+
+    title
+
+  });
+
+
+  renderMenuItems();
+
+  saveMenuItemsToSupabase();
+
+}
+
+
+function deleteMenuItem(id){
+
+  if(
+    !confirm(
+      "ต้องการลบหัวข้อนี้?"
+    )
+  ) return;
+
+
+  menuItems =
+    menuItems.filter(
+      item =>
+        String(item.id) !==
+        String(id)
+    );
+
+
+  renderMenuItems();
+
+  saveMenuItemsToSupabase();
+
+}
+
+
+/* =========================================================
+   SAVE MENU
+========================================================= */
+
+async function saveMenuItemsToSupabase(){
+
+  if(!db){
+
+    localStorage.setItem(
+      "thbr_menu",
+      JSON.stringify(
+        menuItems
+      )
+    );
+
+    return;
+
+  }
+
+
+  /*
+    ต้องมี table:
+
+    site_menu
+
+    id
+    menu_data
+    updated_at
+  */
+
+
+  const {
+    error
+  } =
+    await db
+      .from("site_menu")
+      .upsert({
+
+        id:1,
+
+        menu_data:
+          menuItems,
+
+        updated_at:
+          new Date()
+            .toISOString()
+
+      });
+
+
+  if(error){
+
+    console.error(error);
+
+  }
+
+}
+
+
+/* =========================================================
+   CONTENT EDITOR
+========================================================= */
+
+function saveContent(){
+
+  const heading =
+    document
+      .getElementById(
+        "contentHeading"
+      ).value.trim();
+
+
+  const subheading =
+    document
+      .getElementById(
+        "contentSubheading"
+      ).value.trim();
+
+
+  const body =
+    document
+      .getElementById(
+        "contentBody"
+      ).value;
+
+
+  const type =
+    document
+      .getElementById(
+        "contentType"
+      ).value;
+
+
+  if(!heading){
+
+    toast(
+      "กรุณาใส่หัวข้อ"
+    );
+
+    return;
+
+  }
+
+
+  contentItems.push({
+
+    id:Date.now(),
+
+    heading,
+
+    subheading,
+
+    body,
+
+    type
+
+  });
+
+
+  renderContent();
+
+  saveContentToSupabase();
+
+
+  document.getElementById(
+    "contentHeading"
+  ).value = "";
+
+
+  document.getElementById(
+    "contentSubheading"
+  ).value = "";
+
+
+  document.getElementById(
+    "contentBody"
+  ).value = "";
+
+}
+
+
+function renderContent(){
+
+  const list =
+    document.getElementById(
+      "contentList"
+    );
+
+
+  list.innerHTML =
+    contentItems.map(item => `
+
+      <div class="catalog-card">
+
+        <span class="badge badge-pink">
+
+          ${
+            item.type === "card"
+            ? "Card"
+            : "Text"
+          }
+
+        </span>
+
+        <h3>
+
+          ${escapeHTML(
+            item.heading
+          )}
+
+        </h3>
+
+        <strong>
+
+          ${escapeHTML(
+            item.subheading
+          )}
+
+        </strong>
+
+        <p>
+
+          ${escapeHTML(
+            item.body
+          )}
+
+        </p>
+
+      </div>
+
+    `).join("");
+
+}
+
+
+async function saveContentToSupabase(){
+
+  if(!db){
+
+    localStorage.setItem(
+      "thbr_content",
+      JSON.stringify(
+        contentItems
+      )
+    );
+
+    return;
+
+  }
+
+
+  await db
+    .from("site_content")
+    .upsert({
+
+      id:1,
+
+      content_data:
+        contentItems,
+
+      updated_at:
+        new Date()
+          .toISOString()
+
+    });
+
+}
+
+
+/* =========================================================
+   OTHER FONTS
+========================================================= */
+
+function saveOtherFont(){
+
+  const vendor =
+    document
+      .getElementById(
+        "otherFontVendor"
+      ).value.trim();
+
+
+  const name =
+    document
+      .getElementById(
+        "otherFontName"
+      ).value.trim();
+
+
+  const url =
+    document
+      .getElementById(
+        "otherFontURL"
+      ).value.trim();
+
+
+  if(!name){
+
+    toast(
+      "กรุณาใส่ชื่อฟอนต์"
+    );
+
+    return;
+
+  }
+
+
+  otherFonts.push({
+
+    id:Date.now(),
+
+    vendor,
+
+    name,
+
+    url
+
+  });
+
+
+  renderOtherFonts();
+
+}
+
+
+function renderOtherFonts(){
+
+  document.getElementById(
+    "otherFontsGrid"
+  ).innerHTML =
+    otherFonts.map(font => `
+
+      <div class="catalog-card">
+
+        <span class="badge badge-pink">
+
+          ${escapeHTML(
+            font.vendor ||
+            "Other"
+          )}
+
+        </span>
+
+        <h3>
+
+          ${escapeHTML(
+            font.name
+          )}
+
+        </h3>
+
+        ${
+          font.url
+          ?
+          `
+            <a
+              href="${font.url}"
+              target="_blank"
+            >
+              ไปยังร้านค้า →
+            </a>
+          `
+          :
+          ""
+        }
+
+      </div>
+
+    `).join("");
+
+}
+
+
+/* =========================================================
+   LICENSE
+========================================================= */
+
+async function saveLicense(){
+
+  const data = {
+
+    personal:
+      document.getElementById(
+        "licensePersonal"
+      ).value,
+
+    commercial:
+      document.getElementById(
+        "licenseCommercial"
+      ).value,
+
+    business:
+      document.getElementById(
+        "licenseBusiness"
+      ).value
+
+  };
+
+
+  if(db){
+
+    await db
+      .from("site_settings")
+      .upsert({
+
+        key:"license",
+
+        value:data
+
+      });
+
+  }
+
+
+  toast(
+    "บันทึก License แล้ว ✓"
+  );
+
+}
+
+
+/* =========================================================
+   COPYRIGHT
+========================================================= */
+
+async function saveCopyright(){
+
+  const rules =
+    document
+      .getElementById(
+        "copyrightRules"
+      ).value;
+
+
+  if(db){
+
+    await db
+      .from("site_settings")
+      .upsert({
+
+        key:"copyright",
+
+        value:{
+          rules
+        }
+
+      });
+
+  }
+
+
+  toast(
+    "บันทึกกฎลิขสิทธิ์แล้ว ✓"
+  );
+
+}
+
+
+/* =========================================================
+   ADMIN VS
+========================================================= */
+
+function populateAdminVS(){
+
+  const a =
+    document.getElementById(
+      "adminVsA"
+    );
+
+  const b =
+    document.getElementById(
+      "adminVsB"
+    );
+
+
+  const options =
+    fonts.map(
+      font => `
+
+        <option value="${font.id}">
+
+          ${escapeHTML(
+            font.name
+          )}
+
+        </option>
+
+      `
+    ).join("");
+
+
+  a.innerHTML =
+    options;
+
+  b.innerHTML =
+    options;
+
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+function updateStats(){
+
+  document.getElementById(
+    "statFonts"
+  ).textContent =
+    fonts.length;
+
+
+  document.getElementById(
+    "statOrders"
+  ).textContent =
+    orders.length;
+
+
+  const pending =
+    orders.filter(
+      o =>
+        String(
+          o.status
+        ).toLowerCase()
+        === "pending"
+    ).length;
+
+
+  document.getElementById(
+    "statPending"
+  ).textContent =
+    pending;
+
+
+  const sales =
+    orders
+      .filter(
+        o =>
+          String(
+            o.status
+          ).toLowerCase()
+          === "approved"
+      )
+      .reduce(
+        (
+          total,
+          o
+        ) =>
+          total +
+          Number(
+            o.amount || 0
+          ),
+        0
+      );
+
+
+  document.getElementById(
+    "statSales"
+  ).textContent =
+    "฿" +
+    sales.toLocaleString();
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+function toast(message){
+
+  const element =
+    document.getElementById(
+      "toast"
+    );
+
+
+  element.textContent =
+    message;
+
+
+  element.classList.add(
+    "show"
+  );
+
+
+  setTimeout(
+    () =>
+      element.classList.remove(
+        "show"
+      ),
+    2500
+  );
+
+}
+
+
+/* =========================================================
+   ESCAPE
+========================================================= */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replaceAll(
+      "&",
+      "&amp;"
+    )
+    .replaceAll(
+      "<",
+      "&lt;"
+    )
+    .replaceAll(
+      ">",
+      "&gt;"
+    )
+    .replaceAll(
+      '"',
+      "&quot;"
+    )
+    .replaceAll(
+      "'",
+      "&#039;"
+    );
+
+}
+
+
+function escapeJS(value){
+
+  return String(value)
+    .replaceAll(
+      "\\",
+      "\\\\"
+    )
+    .replaceAll(
+      "'",
+      "\\'"
+    );
+
+}
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+async function initialize(){
+
+  /* Load Local Demo Data */
+
+  try{
+
+    const localMenu =
+      localStorage.getItem(
+        "thbr_menu"
+      );
+
+    if(localMenu){
+
+      menuItems =
+        JSON.parse(
+          localMenu
+        );
+
+    }
+
+
+    const localContent =
+      localStorage.getItem(
+        "thbr_content"
+      );
+
+    if(localContent){
+
+      contentItems =
+        JSON.parse(
+          localContent
+        );
+
+    }
+
+  }catch(e){
+
+    console.error(e);
+
+  }
+
+
+  await loadFonts();
+
+  await loadOrders();
+
+  renderMenuItems();
+
+  renderContent();
+
+  renderOtherFonts();
+
+  updateStats();
+
+}
+
+
+/* =========================================================
+   CHECK SESSION
+========================================================= */
+
+if(
+  sessionStorage.getItem(
+    "thbr_admin"
+  ) === "true"
+){
+
+  document
+    .getElementById(
+      "loginScreen"
+    )
+    .classList.add(
+      "hidden"
+    );
+
+  document
+    .getElementById(
+      "app"
+    )
+    .classList.add(
+      "active"
+    );
+
+  initialize();
+
+}
+
+</script>
+
+</body>
+</html>
